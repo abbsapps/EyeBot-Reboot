@@ -1,0 +1,5 @@
+C:\code\AbNode Projects\EybotReboot\EyeBotReboot\EyeBotReboot\bin\Debug\EyeBotReboot.exe
+C:\code\AbNode Projects\EybotReboot\EyeBotReboot\EyeBotReboot\bin\Debug\EyeBotReboot.pdb
+C:\code\AbNode Projects\EybotReboot\EyeBotReboot\EyeBotReboot\obj\Debug\EyeBotReboot.csprojResolveAssemblyReference.cache
+C:\code\AbNode Projects\EybotReboot\EyeBotReboot\EyeBotReboot\obj\Debug\EyeBotReboot.exe
+C:\code\AbNode Projects\EybotReboot\EyeBotReboot\EyeBotReboot\obj\Debug\EyeBotReboot.pdb
