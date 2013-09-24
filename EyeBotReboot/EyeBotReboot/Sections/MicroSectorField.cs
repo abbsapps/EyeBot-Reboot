@@ -15,11 +15,11 @@ namespace EyeBotReboot.Sections
             WidthPercent = fieldWidthPercent;
             HeighPercent = fieldHeightPercent;
 
-            var counter = 0;
-            for (int i = (int)(-1 * (.5 * fieldWidth * fieldWidthPercent)); i < (int)(.5 * fieldWidth * fieldWidthPercent); i = i + (int)(.01 * fieldWidth))
+            var counter = 0; //sonething wonky in the sector row count hanling - it doen't like numbers other than 10
+            for (int i = (int)(-1 * (.5 * fieldWidth * fieldWidthPercent)); i < (int)(.5 * fieldWidth * fieldWidthPercent); i += (int)((1.0 / sectorRowCount) * fieldWidthPercent * fieldWidth))
             {
                 TemporaryFieldByLocation.Add(new List<Sector>());
-                for (int j = (int)(-1 * (.5 * fieldHeight * fieldHeightPercent)); j < (int)(.5 * fieldHeight * fieldHeightPercent); j = j + (int)(.01 * fieldHeight))
+                for (int j = (int)(-1 * (.5 * fieldHeight * fieldHeightPercent)); j < (int)(.5 * fieldHeight * fieldHeightPercent); j += (int)((1.0 / sectorRowCount) * fieldHeightPercent * fieldWidth))
                 {
                     var xLocation = i +
                                     (int)

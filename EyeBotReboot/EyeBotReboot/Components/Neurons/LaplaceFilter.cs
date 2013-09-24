@@ -21,9 +21,6 @@ namespace EyeBotReboot.Components.Neurons
                                        GlobalLayersKnowledge.Perception.Height*.5;
             if ((xLocation >(-1.0 * comparitiveXLocation) && xLocation < (comparitiveXLocation)) && (yLocation > (-1.0 * comparitiveYLocation) && yLocation < (comparitiveYLocation)))
             {
-                //var xIndexPartOne = (float) (xLocation + .5*GlobalLayersKnowledge.Perception.Width);
-                //var yIndexPartOne = (float) (yLocation + .5*GlobalLayersKnowledge.Perception.Height);
-
                 var xIndexPartOne =
                     (float)
                     (xLocation +

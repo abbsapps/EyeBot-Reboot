@@ -14,7 +14,7 @@ namespace EyeBotReboot.Sections
             TemporaryFieldByLocation = new List<List<Sector>>();
 
             var counter = 0;
-            for (int i = (int)(-1 * (.5 * fieldWidth)); i < (int)(.5 * fieldWidth); i = i + (int)((1.0/sectorRowCount) * fieldWidth))
+            for (int i = (int)(-1 * (.5 * fieldWidth)); i < (int)(.5 * fieldWidth); i += (int)((1.0/sectorRowCount) * fieldWidth))
             {
                 TemporaryFieldByLocation.Add(new List<Sector>());
                 for (int j = (int)(-1 * (.5 * fieldHeight)); j < (int)(.5 * fieldHeight); j = j + (int)((1.0/sectorRowCount) * fieldHeight))
@@ -41,7 +41,7 @@ namespace EyeBotReboot.Sections
         {
             foreach (var sector in Field)
             {
-                sector.NewTurn();
+                //sector.NewTurn();
             }
         }
     }
