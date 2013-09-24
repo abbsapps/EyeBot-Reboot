@@ -19,6 +19,8 @@ namespace EyeBotReboot.Components.Neurons
                                        GlobalLayersKnowledge.Perception.Width * .5;
             var comparitiveYLocation = GlobalLayersKnowledge.MicroSectorField.HeighPercent*
                                        GlobalLayersKnowledge.Perception.Height*.5;
+
+            //micro-sector and direction-field section here
             if ((xLocation >(-1.0 * comparitiveXLocation) && xLocation < (comparitiveXLocation)) && (yLocation > (-1.0 * comparitiveYLocation) && yLocation < (comparitiveYLocation)))
             {
                 var xIndexPartOne =
@@ -48,7 +50,10 @@ namespace EyeBotReboot.Components.Neurons
                                                    signalStrength: signalStrength));
                 //CHECK THE LOGIC ON THIS INDEX LOCATION
             }
-            else
+
+
+
+            else //macro-sector section here
             {
                
                 var xIndexPartOne = (float) (xLocation + .5*GlobalLayersKnowledge.Perception.Width);

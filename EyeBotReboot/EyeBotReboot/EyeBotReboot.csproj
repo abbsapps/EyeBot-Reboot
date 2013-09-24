@@ -55,12 +55,16 @@
     <Compile Include="Components\IDendrite.cs" />
     <Compile Include="Components\INeuron.cs" />
     <Compile Include="Components\Muscle\EyeMuscle.cs" />
+    <Compile Include="Components\Neurons\Direction.cs" />
+    <Compile Include="Components\Neurons\DirectionRepresentative.cs" />
     <Compile Include="Components\Neurons\LaplaceFilter.cs" />
     <Compile Include="Components\Neurons\Receptor.cs" />
     <Compile Include="Components\Neurons\Sector.cs" />
     <Compile Include="GlobalLayersKnowledge.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sections\DirectionField.cs" />
+    <Compile Include="Sections\DirectionSuperField.cs" />
     <Compile Include="Sections\LaplaceFilterField.cs" />
     <Compile Include="Sections\MacroSectorField.cs" />
     <Compile Include="Sections\MicroSectorField.cs" />
