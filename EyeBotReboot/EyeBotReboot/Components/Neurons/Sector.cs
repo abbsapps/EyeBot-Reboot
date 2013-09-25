@@ -11,7 +11,7 @@ namespace EyeBotReboot.Components.Neurons
     {
         public Sector(int xLocation, int yLocation, float thresholdBase, float thresholdSpike, float thresholdDecayPercent, float thresholdDecayConstant, float signalStrength, string dendriteType)
         {
-            Axons = new List<IAxon>();
+            Axons = new List<InitiationAxonOneWay>();
             InitiationAxonOneWay axon = new InitiationAxonOneWay(thresholdBase: thresholdBase, thresholdSpike: thresholdSpike,
                                                             thresholdDecayPercent: thresholdDecayPercent,
                                                             thresholdDecayConstant: thresholdDecayConstant,
@@ -25,7 +25,7 @@ namespace EyeBotReboot.Components.Neurons
 
         public int XLocation { get; set; } //theoretically don't need if eye muscle localization works out as expected
         public int YLocation { get; set; } //theoretically don't need if eye muscle localization works out as expected
-        public List<IAxon> Axons { get; set; }
+        public List<InitiationAxonOneWay> Axons { get; set; }
         public float Charge { get; set; }
 
         public void NewTurn()
@@ -51,9 +51,12 @@ namespace EyeBotReboot.Components.Neurons
                     }
                 }
             }
+            //get rid of above ultimately; is for testing purposes
+
+            
             foreach (InitiationAxonOneWay axon in Axons)
             {
-                if (Charge > axon.Threshold)
+                if (Charge > axon.Threshold) //need some way to raise the axon threshes of the muscle-going axons of ALL sectors.  Mayhaps a Muscle solution?  T'would seem logical, but might require some sort of 'dendrite fatigue', which is an unexplored concept right now.
                 {
                     axon.Fire();
                     Charge -= axon.SignalStrength;

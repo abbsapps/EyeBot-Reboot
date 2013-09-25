@@ -48,12 +48,11 @@ namespace EyeBotReboot.Components.Neurons
                                                    thresholdDecayPercent: thresholdDecayPercent,
                                                    thresholdDecayConstant: thresholdDecayConstant,
                                                    signalStrength: signalStrength));
-                //CHECK THE LOGIC ON THIS INDEX LOCATION
             }
 
 
 
-            else //macro-sector section here
+            else
             {
                
                 var xIndexPartOne = (float) (xLocation + .5*GlobalLayersKnowledge.Perception.Width);
@@ -88,7 +87,7 @@ namespace EyeBotReboot.Components.Neurons
         {
             foreach (var axon in Axons)
             {
-                if (axon.Threshold > axon.ThresholdBase)
+                while (axon.Threshold > axon.ThresholdBase) //DEFINITELY LOOK INTO WHILE LOOP HERE - PRETTY POSITIVE THAT IS THE RIGHT ROUTE TO GO.
                 {
                     axon.Threshold -= ((axon.ThresholdDecayPercent*(axon.Threshold - axon.ThresholdBase)) + axon.ThresholdDecayConstant);
                     if (axon.Threshold < axon.ThresholdBase)

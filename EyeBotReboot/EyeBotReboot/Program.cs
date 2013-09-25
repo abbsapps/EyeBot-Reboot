@@ -35,7 +35,7 @@ namespace EyeBotReboot
             GlobalLayersKnowledge.MacroSectorField = new MacroSectorField(fieldWidth: receptorFieldWidth,
                                                                           fieldHeight: receptorFieldHeight,
                                                                           sectorRowCount: 20, thresholdBase: 1000,
-                                                                          thresholdSpike: 100,
+                                                                          thresholdSpike: 500,
                                                                           thresholdDecayPercent: (float) .2,
                                                                           thresholdDecayConstant: 10, signalStrength: 1,
                                                                           dendriteType: "unpaired");
@@ -44,8 +44,8 @@ namespace EyeBotReboot
                                                                           fieldHeight: receptorFieldHeight,
                                                                           fieldWidthPercent: (float) .1,
                                                                           fieldHeightPercent: (float) .1,
-                                                                          sectorRowCount: 10, thresholdBase: 200,
-                                                                          thresholdSpike: 25,
+                                                                          sectorRowCount: 10, thresholdBase: 150,
+                                                                          thresholdSpike: 150,
                                                                           thresholdDecayPercent: (float) .2,
                                                                           thresholdDecayConstant: 5, signalStrength: 1,
                                                                           dendriteType: "unpaired");
