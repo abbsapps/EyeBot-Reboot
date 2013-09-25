@@ -41,7 +41,7 @@ namespace EyeBotReboot.Sections
         {
             foreach (var sector in Field)
             {
-                //sector.NewTurn();
+                sector.NewTurn();
             }
         }
     }

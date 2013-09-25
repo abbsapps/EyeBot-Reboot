@@ -39,7 +39,6 @@ namespace EyeBotReboot.Components.Neurons
                         YLocation + j + (int)(.5 * GlobalLayersKnowledge.Perception.Height), Color.Red);
                 }
             }
-            //ultimately get rid of above
             if (Charge > 2)
             {
                 for (int i = -1; i < 2; i++ )
@@ -50,6 +49,20 @@ namespace EyeBotReboot.Components.Neurons
                             XLocation + i + (int)(.5 * GlobalLayersKnowledge.Perception.Width),
                             YLocation + j + (int)(.5 * GlobalLayersKnowledge.Perception.Height), Color.GreenYellow);
                     }
+                }
+            }
+            foreach (InitiationAxonOneWay axon in Axons)
+            {
+                if (Charge > axon.Threshold)
+                {
+                    axon.Fire();
+                    Charge -= axon.SignalStrength;
+                    GlobalLayersKnowledge.EyeMuscle.ChangePosition(XLocation, YLocation);
+                }
+                axon.Threshold -= (axon.ThresholdDecayConstant + axon.ThresholdDecayPercent * axon.Threshold);
+                if (axon.Threshold < axon.ThresholdBase)
+                {
+                    axon.Threshold = axon.ThresholdBase;
                 }
             }
         }

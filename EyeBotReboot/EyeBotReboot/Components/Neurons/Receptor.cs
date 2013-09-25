@@ -46,6 +46,16 @@ namespace EyeBotReboot.Components.Neurons
             }
         }
 
+        //hack below
+        public void Move(int fieldFocusX, int fieldFocusY)
+        {
+            if (!(XLocation + fieldFocusX > GlobalLayersKnowledge.Environment.Width - 1 || XLocation + fieldFocusX < 0 || YLocation + fieldFocusY > GlobalLayersKnowledge.Environment.Height - 1 || YLocation + fieldFocusY < 0))
+            {
+                Fire(fieldFocusX: fieldFocusX, fieldFocusY: fieldFocusY);
+            }
+        }
+        //end hack
+
         public void Fire(int fieldFocusX, int fieldFocusY)
         {
             var environmentInput = GlobalLayersKnowledge.Environment.GetPixel(XLocation + fieldFocusX,
