@@ -23,6 +23,10 @@ namespace EyeBotReboot.Components.Muscle
             {
                 receptor.Move(EnvironmentFocusX, EnvironmentFocusY);
             }
+            foreach (var laplaceFilter in GlobalLayersKnowledge.LaplaceFilterField.Field)
+            {
+                laplaceFilter.Charge = 0;
+            }
             foreach (var sector in GlobalLayersKnowledge.MicroSectorField.Field)
             {
                 sector.Charge = 0;
@@ -30,10 +34,6 @@ namespace EyeBotReboot.Components.Muscle
             foreach (var sector in GlobalLayersKnowledge.MacroSectorField.Field)
             {
                 sector.Charge = 0;
-            }
-            foreach (var laplaceFilter in GlobalLayersKnowledge.LaplaceFilterField.Field)
-            {
-                laplaceFilter.Charge = 0;
             }
             //end hack
         }

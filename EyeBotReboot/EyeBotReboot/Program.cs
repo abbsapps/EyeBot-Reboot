@@ -34,7 +34,7 @@ namespace EyeBotReboot
 
             GlobalLayersKnowledge.MacroSectorField = new MacroSectorField(fieldWidth: receptorFieldWidth,
                                                                           fieldHeight: receptorFieldHeight,
-                                                                          sectorRowCount: 20, thresholdBase: 400,
+                                                                          sectorRowCount: 20, thresholdBase: 1000,
                                                                           thresholdSpike: 100,
                                                                           thresholdDecayPercent: (float) .2,
                                                                           thresholdDecayConstant: 10, signalStrength: 1,
