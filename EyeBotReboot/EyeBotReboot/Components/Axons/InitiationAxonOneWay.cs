@@ -8,7 +8,7 @@ namespace EyeBotReboot.Components.Axons
 {
     public class InitiationAxonOneWay: IAxon
     {
-        public InitiationAxonOneWay(float thresholdBase, float thresholdSpike, float thresholdDecayPercent, float thresholdDecayConstant, float signalStrength, string dendriteType, INeuron targetNeuron)
+        public InitiationAxonOneWay(double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength, string dendriteType, INeuron targetNeuron)
         {
             ThresholdBase = thresholdBase;
             ThresholdSpike = thresholdSpike;
@@ -20,12 +20,12 @@ namespace EyeBotReboot.Components.Axons
 
         }
 
-        public float ThresholdBase { get; set; }
-        public float ThresholdSpike { get; set; }
-        public float ThresholdDecayPercent { get; set; }
-        public float ThresholdDecayConstant { get; set; }
-        public float Threshold { get; set; }
-        public float SignalStrength { get; set; }
+        public double ThresholdBase { get; set; }
+        public double ThresholdSpike { get; set; }
+        public double ThresholdDecayPercent { get; set; }
+        public double ThresholdDecayConstant { get; set; }
+        public double Threshold { get; set; }
+        public double SignalStrength { get; set; }
         public UnpairedDendrite Dendrite { get; set; }
 
         public void Fire()
@@ -33,6 +33,18 @@ namespace EyeBotReboot.Components.Axons
             Dendrite.IncomingCharge += SignalStrength;
             Threshold += ThresholdSpike;
             Dendrite.Fire();
+        }
+
+        public void NewTurn()
+        {
+            if (Threshold > ThresholdBase)
+            {
+                Threshold -= ((ThresholdDecayPercent*(Threshold - ThresholdBase)) + ThresholdDecayConstant);
+                if (Threshold < ThresholdBase)
+                {
+                    Threshold = ThresholdBase;
+                }
+            }
         }
 
 

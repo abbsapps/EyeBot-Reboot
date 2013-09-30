@@ -16,7 +16,7 @@ namespace EyeBotReboot.Components.LaplaceDendrites
 
         public string DendriteType { get; set; }
         public LaplaceFilter Neuron { get; set; }
-        public float Charge { get; set; }
+        public double Charge { get; set; }
 
         public void Fire()
         {

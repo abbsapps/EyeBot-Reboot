@@ -25,7 +25,7 @@ namespace EyeBotReboot.Components.Axons
         }
 
         public ILaplaceDendrite Dendrite { get; set; }
-        public float BrightnessCharge { get; set; }
+        public double BrightnessCharge { get; set; }
 
         public void Fire()
         {

@@ -7,7 +7,7 @@ namespace EyeBotReboot.Components.LaplaceDendrites
 {
     public interface ILaplaceDendrite
     {
-        float Charge { get; set; }
+        double Charge { get; set; }
 
         void Fire();
     }

@@ -8,7 +8,7 @@ namespace EyeBotReboot.Sections
 {
     public class MacroSectorField
     {
-        public MacroSectorField(int fieldWidth, int fieldHeight, int sectorRowCount, float thresholdBase, float thresholdSpike, float thresholdDecayPercent, float thresholdDecayConstant, float signalStrength, string dendriteType)
+        public MacroSectorField(int fieldWidth, int fieldHeight, int sectorRowCount, double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength, string dendriteType)
         {
             Field = new List<Sector>();
             TemporaryFieldByLocation = new List<List<Sector>>();

@@ -8,7 +8,7 @@ namespace EyeBotReboot.Sections
 {
     public class LaplaceFilterField
     {
-        public LaplaceFilterField(int fieldWidth, int fieldHeight, float focusDensity, float thresholdBase, float thresholdSpike, float thresholdDecayPercent, float thresholdDecayConstant, float signalStrength)
+        public LaplaceFilterField(int fieldWidth, int fieldHeight, double focusDensity, double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength)
         {
             Field = new List<LaplaceFilter>();
             TemporaryFieldByLocation = new List<List<LaplaceFilter>>(); //might not need?

@@ -15,7 +15,7 @@ namespace EyeBotReboot.Components.Dendrites
 
         public string DendriteType { get; set; }
         public INeuron Neuron { get; set; }
-        public float IncomingCharge { get; set; }
+        public double IncomingCharge { get; set; }
 
         public void Fire()
         {

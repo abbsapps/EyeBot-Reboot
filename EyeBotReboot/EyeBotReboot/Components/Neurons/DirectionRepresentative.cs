@@ -7,6 +7,6 @@ namespace EyeBotReboot.Components.Neurons
 {
     public class DirectionRepresentative: INeuron
     {
-        public float Charge { get; set; }
+        public double Charge { get; set; }
     }
 }

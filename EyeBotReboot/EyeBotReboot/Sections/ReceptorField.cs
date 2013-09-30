@@ -8,7 +8,7 @@ namespace EyeBotReboot.Sections
 {
     public class ReceptorField
     {
-        public ReceptorField(int fieldWidth, int fieldHeight, float focusDensity, int focusLocationX, int focusLocationY, float thresholdBase, float thresholdSpike, float thresholdDecayPercent, float thresholdDecayConstant, float signalStrength, int laplaceReach)
+        public ReceptorField(int fieldWidth, int fieldHeight, double focusDensity, int focusLocationX, int focusLocationY, double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength, int laplaceReach)
         {
             Field = new List<Receptor>();
             TemporaryFieldByLocation = new List<List<Receptor>>(); //might not need?

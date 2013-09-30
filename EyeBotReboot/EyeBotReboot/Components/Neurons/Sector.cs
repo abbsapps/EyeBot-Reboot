@@ -9,7 +9,7 @@ namespace EyeBotReboot.Components.Neurons
 {
     public class Sector: INeuron
     {
-        public Sector(int xLocation, int yLocation, float thresholdBase, float thresholdSpike, float thresholdDecayPercent, float thresholdDecayConstant, float signalStrength, string dendriteType)
+        public Sector(int xLocation, int yLocation, double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength, string dendriteType)
         {
             Axons = new List<InitiationAxonOneWay>();
             InitiationAxonOneWay axon = new InitiationAxonOneWay(thresholdBase: thresholdBase, thresholdSpike: thresholdSpike,
@@ -26,7 +26,7 @@ namespace EyeBotReboot.Components.Neurons
         public int XLocation { get; set; } //theoretically don't need if eye muscle localization works out as expected
         public int YLocation { get; set; } //theoretically don't need if eye muscle localization works out as expected
         public List<InitiationAxonOneWay> Axons { get; set; }
-        public float Charge { get; set; }
+        public double Charge { get; set; }
 
         public void NewTurn()
         {
@@ -62,11 +62,7 @@ namespace EyeBotReboot.Components.Neurons
                     Charge -= axon.SignalStrength;
                     GlobalLayersKnowledge.EyeMuscle.ChangePosition(XLocation, YLocation);
                 }
-                axon.Threshold -= (axon.ThresholdDecayConstant + axon.ThresholdDecayPercent * axon.Threshold);
-                if (axon.Threshold < axon.ThresholdBase)
-                {
-                    axon.Threshold = axon.ThresholdBase;
-                }
+                axon.NewTurn();
             }
         }
     }

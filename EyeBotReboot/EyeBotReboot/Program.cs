@@ -32,40 +32,72 @@ namespace EyeBotReboot
 
             GlobalLayersKnowledge.EyeMuscle = new EyeMuscle();
 
+            var directions = new List<double>();
+
+            //for (double i = 0; i < 360; i += 3.6 )
+            //{
+            //    directions.Add(i);
+            //}
+
+            //for experimental testing purposes
+            directions.Add(45);
+            //end experimental testing exactitude
+
+            GlobalLayersKnowledge.DirectionSuperField = new DirectionSuperField(directions: directions, //1's are all obviously fillers.  For now I'm just trying to get the direction fields hooked up right
+                                                                                fieldWidth: receptorFieldWidth,
+                                                                                fieldHeight: receptorFieldHeight,
+                                                                                fieldHeightPercent: .1,
+                                                                                fieldWidthPercent: .1,
+                                                                                otherDirectionThresholdBase: 1,
+                                                                                otherDirectionThresholdSpike: 1,
+                                                                                otherDirectionThresholdDecayPercent: 1,
+                                                                                otherDirectionThresholdDecayConstant: 1,
+                                                                                otherDirectionSignalStrength: 1,
+                                                                                representativeThresholdBase: 1,
+                                                                                representativeDirectionThresholdSpike: 1,
+                                                                                representativeDirectionThresholdDecayPercent : 1,
+                                                                                representativeDirectionThresholdDecayConstant : 1,
+                                                                                representativeDirectionSignalStrength: 1,
+                                                                                laplaceFilterThresholdBase: 1,
+                                                                                laplaceFilterThresholdSpike: 1,
+                                                                                laplaceFilterThresholdDecayPercent: 1,
+                                                                                laplaceFilterThresholdDecayConstant: 1,
+                                                                                laplaceFilterSignalStrength: 1);
+
             GlobalLayersKnowledge.MacroSectorField = new MacroSectorField(fieldWidth: receptorFieldWidth,
                                                                           fieldHeight: receptorFieldHeight,
-                                                                          sectorRowCount: 20, thresholdBase: 1000,
+                                                                          sectorRowCount: 10, thresholdBase: 1500,
                                                                           thresholdSpike: 500,
-                                                                          thresholdDecayPercent: (float) .2,
+                                                                          thresholdDecayPercent: .2,
                                                                           thresholdDecayConstant: 10, signalStrength: 1,
                                                                           dendriteType: "unpaired");
 
             GlobalLayersKnowledge.MicroSectorField = new MicroSectorField(fieldWidth: receptorFieldWidth,
                                                                           fieldHeight: receptorFieldHeight,
-                                                                          fieldWidthPercent: (float) .1,
-                                                                          fieldHeightPercent: (float) .1,
+                                                                          fieldWidthPercent: .1,
+                                                                          fieldHeightPercent: .1,
                                                                           sectorRowCount: 10, thresholdBase: 150,
                                                                           thresholdSpike: 150,
-                                                                          thresholdDecayPercent: (float) .2,
+                                                                          thresholdDecayPercent: .2,
                                                                           thresholdDecayConstant: 5, signalStrength: 1,
                                                                           dendriteType: "unpaired");
 
             GlobalLayersKnowledge.LaplaceFilterField = new LaplaceFilterField(fieldWidth: receptorFieldWidth,
                                                                               fieldHeight: receptorFieldHeight,
-                                                                              focusDensity: (float) .15,
+                                                                              focusDensity: .15,
                                                                               thresholdBase: 3, thresholdSpike: 0,
-                                                                              thresholdDecayPercent: (float) .2,
-                                                                              thresholdDecayConstant: (float) .3,
+                                                                              thresholdDecayPercent: .2,
+                                                                              thresholdDecayConstant: .3,
                                                                               signalStrength: 3);
 
             GlobalLayersKnowledge.ReceptorField = new ReceptorField(fieldWidth: receptorFieldWidth,
                                                                     fieldHeight: receptorFieldHeight,
-                                                                    focusDensity: (float) .3,
+                                                                    focusDensity: .3,
                                                                     focusLocationX: focusStartLocationX,
                                                                     focusLocationY: focusStartLocationY,
                                                                     thresholdBase: 0, thresholdSpike: 0,
-                                                                    thresholdDecayPercent: (float) 0,
-                                                                    thresholdDecayConstant: (float) 0, signalStrength: 3,
+                                                                    thresholdDecayPercent: 0,
+                                                                    thresholdDecayConstant: 0, signalStrength: 3,
                                                                     laplaceReach: 2);
 
             GlobalLayersKnowledge.EyeMuscle.ReceptorField = GlobalLayersKnowledge.ReceptorField;

@@ -7,6 +7,6 @@ namespace EyeBotReboot.Components
 {
     public interface INeuron
     {
-        float Charge { get; set; }
+        double Charge { get; set; }
     }
 }

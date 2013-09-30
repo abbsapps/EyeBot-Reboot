@@ -15,6 +15,7 @@ namespace EyeBotReboot
         public static LaplaceFilterField LaplaceFilterField;
         public static MacroSectorField MacroSectorField;
         public static MicroSectorField MicroSectorField;
+        public static DirectionSuperField DirectionSuperField;
         public static EyeMuscle EyeMuscle;
 
         public static Bitmap Environment;

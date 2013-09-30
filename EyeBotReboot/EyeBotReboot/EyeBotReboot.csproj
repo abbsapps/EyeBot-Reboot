@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Components\Axons\InitiationAxonOneWay.cs" />
     <Compile Include="Components\Axons\ReceptorAxon.cs" />
+    <Compile Include="Components\Dendrites\ReturnPairedDendrite.cs" />
     <Compile Include="Components\LaplaceDendrites\ILaplaceDendrite.cs" />
     <Compile Include="Components\LaplaceDendrites\UnpairedCenterDentrite.cs" />
     <Compile Include="Components\LaplaceDendrites\UnpairedSurroundDendrite.cs" />

@@ -7,21 +7,32 @@ namespace EyeBotReboot.Components.Neurons
 {
     public class Direction: INeuron
     {
-                public Direction(float direction,
-                              float otherDirectionThresholdBase, float otherDirectionThresholdSpike,
-                              float otherDirectionThresholdDecayPercent, float otherDirectionThresholdDecayConstant,
-                              float otherDirectionSignalStrength,
+        public Direction(double direction, //does the actual direction neuron constructor need to know it's direction? I feel like the connections between neurons in a field will only be established after the entire field has been formed, at the DirectionField level
+                        double otherDirectionThresholdBase, double otherDirectionThresholdSpike,
+                        double otherDirectionThresholdDecayPercent, double otherDirectionThresholdDecayConstant,
+                        double otherDirectionSignalStrength,
 
-                              float representativeThresholdBase, float representativeDirectionThresholdSpike,
-                              float representativeDirectionThresholdDecayPercent,
-                              float representativeDirectionThresholdDecayConstant,
-                              float representativeDirectionSignalStrength,
+                        double representativeThresholdBase, double representativeDirectionThresholdSpike,
+                        double representativeDirectionThresholdDecayPercent,
+                        double representativeDirectionThresholdDecayConstant,
+                        double representativeDirectionSignalStrength,
 
-                              float laplaceFilterThresholdBase, float laplaceFilterThresholdSpike,
-                              float laplaceFilterThresholdDecayPercent, float laplaceFilterThresholdDecayConstant,
-                              float laplaceFilterSignalStrength)
+                        double laplaceFilterThresholdBase, double laplaceFilterThresholdSpike,
+                        double laplaceFilterThresholdDecayPercent, double laplaceFilterThresholdDecayConstant,
+                        double laplaceFilterSignalStrength)
         {
+            Charge = 0;
+            Axons = new List<IAxon>();
+
+            Id = Guid.NewGuid();
         }
-        public float Charge { get; set; }
+
+
+        public double Charge { get; set; }
+        public List<IAxon> Axons { get; set; }
+
+        //for testing purposes
+        public Guid Id { get; set; }
+        //end for testing purposes
     }
 }

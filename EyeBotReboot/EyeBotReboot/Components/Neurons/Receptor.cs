@@ -9,7 +9,7 @@ namespace EyeBotReboot.Components.Neurons
 {
     public class Receptor: INeuron
     {
-        public Receptor(int xLocation, int yLocation, int fieldWidth, int fieldHeight, float focusDensity, float thresholdBase, float thresholdSpike, float thresholdDecayPercent, float thresholdDecayConstant, float signalStrength, int laplaceReach)
+        public Receptor(int xLocation, int yLocation, int fieldWidth, int fieldHeight, double focusDensity, double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength, int laplaceReach)
         {
             Axons = new List<ReceptorAxon>();
             Charge = 0;
@@ -18,7 +18,7 @@ namespace EyeBotReboot.Components.Neurons
             var distanceFromFocus = Math.Sqrt((XLocation*XLocation) + (YLocation*YLocation));
             var distanceRatio = distanceFromFocus/
                                 Math.Sqrt((fieldWidth/2)*(fieldWidth/2) + (fieldHeight/2)*(fieldHeight/2));
-            FireChance = (float) Math.Pow(distanceRatio, focusDensity);
+            FireChance = (double) Math.Pow(distanceRatio, focusDensity);
             Axons.Add(new ReceptorAxon(dendriteType: "center", targetNeuron: GlobalLayersKnowledge.LaplaceFilterField.TemporaryFieldByLocation[(int)((.5 * fieldWidth) + xLocation)][(int)((.5 * fieldHeight) + yLocation)])); //CHECK THE LOGIC ON THIS INDEX LOCATION
             for (int i = -1 * laplaceReach; i < laplaceReach; i++)
             {
@@ -34,8 +34,8 @@ namespace EyeBotReboot.Components.Neurons
 
         public int XLocation { get; set; } //theoretically don't need if eye muscle localization works out as expected
         public int YLocation { get; set; } //theoretically don't need if eye muscle localization works out as expected
-        public float Charge { get; set; }
-        public float FireChance { get; set; }
+        public double Charge { get; set; }
+        public double FireChance { get; set; }
         public List<ReceptorAxon> Axons { get; set; }
 
         public void NewTurn(int fieldFocusX, int fieldFocusY)

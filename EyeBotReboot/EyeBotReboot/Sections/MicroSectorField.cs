@@ -8,12 +8,12 @@ namespace EyeBotReboot.Sections
 {
     public class MicroSectorField
     {
-        public MicroSectorField(int fieldWidth, int fieldHeight, float fieldWidthPercent, float fieldHeightPercent, int sectorRowCount, float thresholdBase, float thresholdSpike, float thresholdDecayPercent, float thresholdDecayConstant, float signalStrength, string dendriteType)
+        public MicroSectorField(int fieldWidth, int fieldHeight, double fieldWidthPercent, double fieldHeightPercent, int sectorRowCount, double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength, string dendriteType)
         {
             Field = new List<Sector>();
             TemporaryFieldByLocation = new List<List<Sector>>();
             WidthPercent = fieldWidthPercent;
-            HeighPercent = fieldHeightPercent;
+            HeightPercent = fieldHeightPercent;
 
             var counter = 0; //sonething wonky in the sector row count hanling - it doen't like numbers other than 10
             for (int i = (int)(-1 * (.5 * fieldWidth * fieldWidthPercent)); i < (int)(.5 * fieldWidth * fieldWidthPercent); i += (int)((1.0 / sectorRowCount) * fieldWidthPercent * fieldWidth))
@@ -40,8 +40,8 @@ namespace EyeBotReboot.Sections
 
         public List<Sector> Field { get; set; }
         public List<List<Sector>> TemporaryFieldByLocation { get; set; }
-        public float WidthPercent { get; set; }
-        public float HeighPercent { get; set; }
+        public double WidthPercent { get; set; }
+        public double HeightPercent { get; set; }
 
         public void NewTurn()
         {

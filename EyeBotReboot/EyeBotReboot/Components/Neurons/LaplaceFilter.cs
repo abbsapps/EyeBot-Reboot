@@ -9,7 +9,7 @@ namespace EyeBotReboot.Components.Neurons
 {
     public class LaplaceFilter: INeuron
     {
-        public LaplaceFilter(int xLocation, int yLocation, float thresholdBase, float thresholdSpike, float thresholdDecayPercent, float thresholdDecayConstant, float signalStrength)
+        public LaplaceFilter(int xLocation, int yLocation, double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength)
         {
             Axons = new List<InitiationAxonOneWay>();
             Charge = 0;
@@ -17,29 +17,29 @@ namespace EyeBotReboot.Components.Neurons
             YLocation = yLocation;
             var comparitiveXLocation = GlobalLayersKnowledge.MicroSectorField.WidthPercent*
                                        GlobalLayersKnowledge.Perception.Width * .5;
-            var comparitiveYLocation = GlobalLayersKnowledge.MicroSectorField.HeighPercent*
+            var comparitiveYLocation = GlobalLayersKnowledge.MicroSectorField.HeightPercent*
                                        GlobalLayersKnowledge.Perception.Height*.5;
 
             //micro-sector and direction-field section here
             if ((xLocation >(-1.0 * comparitiveXLocation) && xLocation < (comparitiveXLocation)) && (yLocation > (-1.0 * comparitiveYLocation) && yLocation < (comparitiveYLocation)))
             {
                 var xIndexPartOne =
-                    (float)
+                    (double)
                     (xLocation +
                      .5*(GlobalLayersKnowledge.MicroSectorField.WidthPercent*GlobalLayersKnowledge.Perception.Width));
 
                 var yIndexPartOne =
-                    (float)
+                    (double)
                     (yLocation +
-                     .5*(GlobalLayersKnowledge.MicroSectorField.HeighPercent*GlobalLayersKnowledge.Perception.Height));
+                     .5*(GlobalLayersKnowledge.MicroSectorField.HeightPercent*GlobalLayersKnowledge.Perception.Height));
 
                 var nearestSectorXIndex = (int)((xIndexPartOne * 
-                    (float)GlobalLayersKnowledge.MicroSectorField.TemporaryFieldByLocation.Count) / 
-                    (float)(GlobalLayersKnowledge.MicroSectorField.WidthPercent * GlobalLayersKnowledge.Perception.Width));
+                    (double)GlobalLayersKnowledge.MicroSectorField.TemporaryFieldByLocation.Count) / 
+                    (double)(GlobalLayersKnowledge.MicroSectorField.WidthPercent * GlobalLayersKnowledge.Perception.Width));
                 var nearestSectorYIndex =
                     (int)(( yIndexPartOne * 
-                    (float)GlobalLayersKnowledge.MicroSectorField.TemporaryFieldByLocation[0].Count) / 
-                    (float)(GlobalLayersKnowledge.MicroSectorField.HeighPercent * GlobalLayersKnowledge.Perception.Height));
+                    (double)GlobalLayersKnowledge.MicroSectorField.TemporaryFieldByLocation[0].Count) / 
+                    (double)(GlobalLayersKnowledge.MicroSectorField.HeightPercent * GlobalLayersKnowledge.Perception.Height));
                 Axons.Add(new InitiationAxonOneWay(dendriteType: "center",
                                                    targetNeuron:
                                                        GlobalLayersKnowledge.MicroSectorField.TemporaryFieldByLocation
@@ -55,15 +55,15 @@ namespace EyeBotReboot.Components.Neurons
             else
             {
                
-                var xIndexPartOne = (float) (xLocation + .5*GlobalLayersKnowledge.Perception.Width);
-                var yIndexPartOne = (float) (yLocation + .5*GlobalLayersKnowledge.Perception.Height);
+                var xIndexPartOne = (double) (xLocation + .5*GlobalLayersKnowledge.Perception.Width);
+                var yIndexPartOne = (double) (yLocation + .5*GlobalLayersKnowledge.Perception.Height);
 
                 var nearestSectorXIndex = 
-                    (int)(( xIndexPartOne * (float)GlobalLayersKnowledge.MacroSectorField.TemporaryFieldByLocation.Count) / 
-                    (float)GlobalLayersKnowledge.Perception.Width);
+                    (int)(( xIndexPartOne * (double)GlobalLayersKnowledge.MacroSectorField.TemporaryFieldByLocation.Count) / 
+                    (double)GlobalLayersKnowledge.Perception.Width);
                 var nearestSectorYIndex =
-                    (int)(( yIndexPartOne * (float)GlobalLayersKnowledge.MacroSectorField.TemporaryFieldByLocation[0].Count) / 
-                    (float)GlobalLayersKnowledge.Perception.Height);
+                    (int)(( yIndexPartOne * (double)GlobalLayersKnowledge.MacroSectorField.TemporaryFieldByLocation[0].Count) / 
+                    (double)GlobalLayersKnowledge.Perception.Height);
 
                 Axons.Add(new InitiationAxonOneWay(dendriteType: "center",
                                                    targetNeuron:
@@ -79,8 +79,8 @@ namespace EyeBotReboot.Components.Neurons
 
         public int XLocation { get; set; } //theoretically don't need if eye muscle localization works out as expected
         public int YLocation { get; set; } //theoretically don't need if eye muscle localization works out as expected
-        public float Value { get; set; }
-        public float Charge { get; set; }
+        public double Value { get; set; }
+        public double Charge { get; set; }
         public List<InitiationAxonOneWay> Axons { get; set; }
 
         public void NewTurn()
