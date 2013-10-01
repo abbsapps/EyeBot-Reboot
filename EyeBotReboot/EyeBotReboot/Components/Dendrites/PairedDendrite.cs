@@ -8,11 +8,12 @@ namespace EyeBotReboot.Components.Dendrites
 {
     public class PairedDendrite : IDendrite
     {
-        public PairedDendrite(INeuron targetNeuron, INeuron returnNeuron, InitiationAxonTwoWay returnAxon, double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength)
+        public PairedDendrite(INeuron targetNeuron, INeuron returnNeuron, InitiationAxonTwoWay returnAxon, double threshReductionMultiplier, double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength)
         {
             DendriteType = "paired";
             Neuron = targetNeuron;
             PairedAxon = new ReturnAxon(thresholdBase: thresholdBase, thresholdSpike: thresholdSpike,
+                                        dendriteThreshReductionMultiplier: threshReductionMultiplier,
                                         thresholdDecayPercent: thresholdDecayPercent,
                                         thresholdDecayConstant: thresholdDecayConstant, signalStrength: signalStrength,
                                         returnNeuron: returnNeuron, returnAxon: returnAxon);
@@ -20,7 +21,7 @@ namespace EyeBotReboot.Components.Dendrites
 
         public string DendriteType { get; set; }
         public INeuron Neuron { get; set; }
-        public IAxon PairedAxon { get; set; }
-        public double AxonThreshReduction { get; set; }
+        public ReturnAxon PairedAxon { get; set; }
+        public double AxonThreshReductionMultiplier { get; set; }
     }
 }

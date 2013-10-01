@@ -6,9 +6,9 @@ using EyeBotReboot.Components.Dendrites;
 
 namespace EyeBotReboot.Components.Axons
 {
-    public class InitiationAxonTwoWay: IAxon
+    public class InitiationAxonTwoWay: IAxonPaired
     {
-        public InitiationAxonTwoWay(double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength, string dendriteType, INeuron targetNeuron, INeuron returnNeuron)
+        public InitiationAxonTwoWay(double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength, string dendriteType, INeuron targetNeuron, INeuron returnNeuron, double dendriteThreshReductionMultiplier)
         {
             ThresholdBase = thresholdBase;
             ThresholdSpike = thresholdSpike;
@@ -16,11 +16,12 @@ namespace EyeBotReboot.Components.Axons
             ThresholdDecayConstant = thresholdDecayConstant;
             Threshold = thresholdBase;
             SignalStrength = signalStrength;
-            PairedDendrite = new PairedDendrite(targetNeuron: targetNeuron, returnNeuron: returnNeuron, returnAxon: this,
-                                                thresholdBase: thresholdBase, thresholdSpike: thresholdSpike,
-                                                thresholdDecayPercent: thresholdDecayPercent,
-                                                thresholdDecayConstant: thresholdDecayConstant,
-                                                signalStrength: signalStrength);
+            Dendrite = new PairedDendrite(targetNeuron: targetNeuron, returnNeuron: returnNeuron, returnAxon: this,
+                                          threshReductionMultiplier: dendriteThreshReductionMultiplier,
+                                          thresholdBase: thresholdBase, thresholdSpike: thresholdSpike,
+                                          thresholdDecayPercent: thresholdDecayPercent,
+                                          thresholdDecayConstant: thresholdDecayConstant,
+                                          signalStrength: signalStrength);
         }
         public double ThresholdBase { get; set; }
         public double ThresholdSpike { get; set; }
@@ -29,6 +30,6 @@ namespace EyeBotReboot.Components.Axons
         public double Threshold { get; set; }
         public double SignalStrength { get; set; }
 
-        public PairedDendrite PairedDendrite { get; set; }
+        public PairedDendrite Dendrite { get; set; }
     }
 }

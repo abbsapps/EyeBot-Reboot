@@ -34,13 +34,13 @@ namespace EyeBotReboot
 
             var directions = new List<double>();
 
-            //for (double i = 0; i < 360; i += 3.6 )
-            //{
-            //    directions.Add(i);
-            //}
+            for (double i = 1; i < 360; i += 3.6 )
+            {
+                directions.Add(i);
+            }
 
             //for experimental testing purposes
-            directions.Add(45);
+            //directions.Add(100);
             //end experimental testing exactitude
 
             GlobalLayersKnowledge.DirectionSuperField = new DirectionSuperField(directions: directions, //1's are all obviously fillers.  For now I'm just trying to get the direction fields hooked up right
@@ -48,6 +48,7 @@ namespace EyeBotReboot
                                                                                 fieldHeight: receptorFieldHeight,
                                                                                 fieldHeightPercent: .1,
                                                                                 fieldWidthPercent: .1,
+                                                                                otherDirectionThreshReductionMultiplier: 1,
                                                                                 otherDirectionThresholdBase: 1,
                                                                                 otherDirectionThresholdSpike: 1,
                                                                                 otherDirectionThresholdDecayPercent: 1,

@@ -11,6 +11,7 @@ namespace EyeBotReboot.Sections
     {
         public DirectionField(double direction, int fieldWidth, int fieldHeight,
                               double fieldWidthPercent, double fieldHeightPercent, 
+                              double otherDirectionThreshReductionMultiplier,
                               double otherDirectionThresholdBase, double otherDirectionThresholdSpike,
                               double otherDirectionThresholdDecayPercent, double otherDirectionThresholdDecayConstant,
                               double otherDirectionSignalStrength,
@@ -39,6 +40,7 @@ namespace EyeBotReboot.Sections
                 {
                     
                     Direction newDirectionNeuron = new Direction(direction: direction,
+                                                                 otherDirectionThreshReductionMultiplier: otherDirectionThreshReductionMultiplier,
                                                                  otherDirectionThresholdBase: otherDirectionThresholdBase,
                                                                  otherDirectionThresholdSpike: otherDirectionThresholdSpike,
                                                                  otherDirectionThresholdDecayPercent: otherDirectionThresholdDecayPercent,
@@ -80,7 +82,7 @@ namespace EyeBotReboot.Sections
                 double realPointX = startFromFirstOrLastX == 0 ? i : startFromFirstOrLastX - i;
                 double realPointY = startFromFirstOrLastY;
 
-                while (realPointX < TemporaryFieldByLocation.Count && realPointY < TemporaryFieldByLocation[0].Count && realPointX >= 0 && realPointY >= 0)
+                while (realPointX < TemporaryFieldByLocation.Count-1 && realPointY < TemporaryFieldByLocation[0].Count-1 && realPointX >= 0 && realPointY >= 0)
                 {
                     realPointX += xChangePerUnit * .25; //should this be yChange? Also, .25 is totes arbi small number intended to make sure I don't skip an index point.  Gotta be a better way; this is dumb dumb dumb
                     realPointY += yChangePerUnit * .25; //should this be xChange? Also, .25 is totes arbi small number intended to make sure I don't skip an index point.  Gotta be a better way; this is dumb dumb dumb
@@ -115,7 +117,7 @@ namespace EyeBotReboot.Sections
                 double realPointX = startFromFirstOrLastX;
                 double realPointY = startFromFirstOrLastY == 0 ? i : startFromFirstOrLastY - i;
 
-                while (realPointX < TemporaryFieldByLocation.Count && realPointY < TemporaryFieldByLocation[0].Count && realPointX >= 0 && realPointY >= 0)
+                while (realPointX < (TemporaryFieldByLocation.Count-1) && realPointY < (TemporaryFieldByLocation[0].Count-1) && realPointX >= 0 && realPointY >= 0)
                 {
                     realPointX += xChangePerUnit * .25; //should this be yChange? Also, .25 is totes arbi small number intended to make sure I don't skip an index point.  Gotta be a better way; this is dumb dumb dumb
                     realPointY += yChangePerUnit * .25; //should this be xChange? Also, .25 is totes arbi small number intended to make sure I don't skip an index point.  Gotta be a better way; this is dumb dumb dumb
@@ -145,30 +147,50 @@ namespace EyeBotReboot.Sections
             //establishing a new connection if a current one does not exist.  Final note: this seems easy in theory, but in practice the only-axon-
             //awareness of neurons (which is a good thing for concern isolation) might complicate this.  Cross that when I get there tho.
 
-            for (int firstLayer = 0;  firstLayer < connectionIndexByLocation.Count -2; firstLayer++)
+            for (int firstLayer = 0;  firstLayer < connectionIndexByLocation.Count - 1; firstLayer++) //not sure why -2 instead of -1 is necessary here - for some reason -1 was breaking it
             {
-                for (int neuronIndexPosition = 0; neuronIndexPosition < connectionIndexByLocation[firstLayer].Count - 2; neuronIndexPosition++)
+                for (int neuronIndexPosition = 0;
+                     neuronIndexPosition < connectionIndexByLocation[firstLayer].Count - 1;
+                     neuronIndexPosition++)
                 {
-                    TemporaryFieldByLocation[connectionIndexByLocation[firstLayer][neuronIndexPosition][0]][
-                        connectionIndexByLocation[firstLayer][neuronIndexPosition][1]].Axons.Add(
+                    var alreadyConnected = false;
+                    foreach (
+                        var axon in
+                            TemporaryFieldByLocation[connectionIndexByLocation[firstLayer][neuronIndexPosition][0]][
+                                connectionIndexByLocation[firstLayer][neuronIndexPosition][1]].Axons)
+                    {
+                        if (axon.Dendrite.PairedAxon.PairedDendrite.Neuron ==
+                            TemporaryFieldByLocation[connectionIndexByLocation[firstLayer][neuronIndexPosition][0]][
+                                connectionIndexByLocation[firstLayer][neuronIndexPosition][1]])
+                        {
+                            alreadyConnected = true;
+                        }
+                    }
+
+                    if (alreadyConnected == false)
+                    {
+                        var xIndexInitiationNeuron = connectionIndexByLocation[firstLayer][neuronIndexPosition][0];
+                        var yIndexInitiationNeuron = connectionIndexByLocation[firstLayer][neuronIndexPosition][1];
+
+                        var xIndexTargetNeuron = connectionIndexByLocation[firstLayer][neuronIndexPosition + 1][0];
+                        var yIndexTargetNeuron = connectionIndexByLocation[firstLayer][neuronIndexPosition + 1][1];
+
+                        //if(xIndexInitiationNeuron)
+                        var neuronInitiator = TemporaryFieldByLocation[xIndexInitiationNeuron][yIndexInitiationNeuron];
+                        var neuronTarget = TemporaryFieldByLocation[xIndexTargetNeuron][yIndexTargetNeuron];
+
+                        neuronInitiator.Axons.Add(
                             new InitiationAxonTwoWay(thresholdBase: otherDirectionThresholdBase,
                                                      thresholdSpike: otherDirectionThresholdSpike,
                                                      thresholdDecayPercent: otherDirectionThresholdDecayPercent,
                                                      thresholdDecayConstant: otherDirectionThresholdDecayConstant,
                                                      signalStrength: otherDirectionSignalStrength,
                                                      dendriteType: "paired",
-                                                     targetNeuron:
-                                                         TemporaryFieldByLocation[
-                                                             connectionIndexByLocation[firstLayer][neuronIndexPosition+1][
-                                                                 0]][
-                                                                     connectionIndexByLocation[firstLayer+1][
-                                                                         neuronIndexPosition][1]],
-                                                     returnNeuron:
-                                                         TemporaryFieldByLocation[
-                                                             connectionIndexByLocation[firstLayer][neuronIndexPosition][
-                                                                 0]][
-                                                                     connectionIndexByLocation[firstLayer][
-                                                                         neuronIndexPosition][1]]));
+                                                     targetNeuron: neuronTarget,
+                                                     returnNeuron: neuronInitiator,
+                                                     dendriteThreshReductionMultiplier:
+                                                         otherDirectionThreshReductionMultiplier));
+                    }
                 }
             }
 

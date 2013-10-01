@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Axons\IAxonPaired.cs" />
+    <Compile Include="Components\Axons\IAxonUnpaired.cs" />
     <Compile Include="Components\Axons\InitiationAxonOneWay.cs" />
     <Compile Include="Components\Axons\ReceptorAxon.cs" />
     <Compile Include="Components\Dendrites\ReturnPairedDendrite.cs" />

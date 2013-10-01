@@ -6,7 +6,7 @@ using EyeBotReboot.Components.Dendrites;
 
 namespace EyeBotReboot.Components.Axons
 {
-    public class InitiationAxonOneWay: IAxon
+    public class InitiationAxonOneWay: IAxonUnpaired
     {
         public InitiationAxonOneWay(double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength, string dendriteType, INeuron targetNeuron)
         {

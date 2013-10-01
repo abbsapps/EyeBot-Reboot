@@ -8,7 +8,7 @@ namespace EyeBotReboot.Components.Axons
 {
     public class ReturnAxon : IAxon
     {
-        public ReturnAxon(double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength, INeuron returnNeuron, InitiationAxonTwoWay returnAxon) //current thinking is that returnAxons will ALWAYS be paired with a PairedDendrite since a returning axon by nature implies a feedback loop, since it itself must be tied to a PairedDendrite created from the InitiationAxon
+        public ReturnAxon(double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength, INeuron returnNeuron, InitiationAxonTwoWay returnAxon, double dendriteThreshReductionMultiplier) //current thinking is that returnAxons will ALWAYS be paired with a PairedDendrite since a returning axon by nature implies a feedback loop, since it itself must be tied to a PairedDendrite created from the InitiationAxon
         {
             ThresholdBase = thresholdBase;
             ThresholdSpike = thresholdSpike;
@@ -17,6 +17,7 @@ namespace EyeBotReboot.Components.Axons
             Threshold = thresholdBase;
             SignalStrength = signalStrength;
             PairedDendrite = new ReturnPairedDendrite(pairedAxon: returnAxon, returnNeuron: returnNeuron,
+                                                      threshReductionMultiplier: dendriteThreshReductionMultiplier,
                                                       thresholdBase: thresholdBase, thresholdSpike: thresholdSpike,
                                                       thresholdDecayPercent: thresholdDecayPercent,
                                                       thresholdDecayConstant: thresholdDecayConstant,

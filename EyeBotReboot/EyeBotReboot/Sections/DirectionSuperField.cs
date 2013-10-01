@@ -9,6 +9,7 @@ namespace EyeBotReboot.Sections
     {
         public DirectionSuperField(List<double> directions, int fieldWidth, int fieldHeight, 
                                    double fieldWidthPercent, double fieldHeightPercent, 
+                                   double otherDirectionThreshReductionMultiplier,
                                    double otherDirectionThresholdBase, double otherDirectionThresholdSpike,
                                    double otherDirectionThresholdDecayPercent, double otherDirectionThresholdDecayConstant,
                                    double otherDirectionSignalStrength,
@@ -30,6 +31,7 @@ namespace EyeBotReboot.Sections
                                                                       fieldHeight: fieldHeight,
                                                                       fieldWidthPercent: fieldWidthPercent,
                                                                       fieldHeightPercent: fieldHeightPercent,
+                                                                      otherDirectionThreshReductionMultiplier: otherDirectionThreshReductionMultiplier,
                                                                       otherDirectionThresholdBase: otherDirectionThresholdBase,
                                                                       otherDirectionThresholdSpike: otherDirectionThresholdSpike,
                                                                       otherDirectionThresholdDecayPercent: otherDirectionThresholdDecayPercent,
