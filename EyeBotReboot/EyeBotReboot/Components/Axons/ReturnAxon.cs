@@ -32,5 +32,10 @@ namespace EyeBotReboot.Components.Axons
         public double SignalStrength { get; set; }
 
         public ReturnPairedDendrite PairedDendrite { get; set; }
+
+        public void Fire()
+        {
+            
+        }
     }
 }

@@ -9,9 +9,9 @@ namespace EyeBotReboot.Components.Neurons
 {
     public class LaplaceFilter: INeuron
     {
-        public LaplaceFilter(int xLocation, int yLocation, double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength)
+        public LaplaceFilter(int xLocation, int yLocation, double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength, double directionNeuronDendriteThreshReductionMultiplier)
         {
-            Axons = new List<InitiationAxonOneWay>();
+            Axons = new List<IAxon>();
             Charge = 0;
             XLocation = xLocation;
             YLocation = yLocation;
@@ -48,6 +48,21 @@ namespace EyeBotReboot.Components.Neurons
                                                    thresholdDecayPercent: thresholdDecayPercent,
                                                    thresholdDecayConstant: thresholdDecayConstant,
                                                    signalStrength: signalStrength));
+
+                //direction field section here
+                foreach (var directionField in GlobalLayersKnowledge.DirectionSuperField.DirectionFields) //I AM EXTREMELY WARY OF THIS CODE FOR NOW.  I'M PRETTY SURE ALL THRESH THESE CONSTRUCTOR VARIABLES SHOULD FOR LAPLACE-FILTER-TO-DIRECTION-NEURON AXONS NOT BE THE SAME AS THE LAPLACE-FILTER-TO-SECTOR-NEURON AXONS, WHICH IS CURRENTLY THE CASE.  SO... MAYBE I HAVE TO ADD EXTRA SET OF INPUTS FOR LAPLACE FILTERS WHICH IS WHAT THEIR AXONS-TO-DIRECTION-NEURONS SHOULD HAVE AS VALUES?
+                {
+                    var xIndex = xLocation + (int)comparitiveXLocation;
+                    var yIndex = yLocation + (int)comparitiveYLocation;
+                    var targetNeuronLocation = directionField.TemporaryFieldByLocation[xIndex][yIndex];
+                    Axons.Add(new InitiationAxonTwoWay(thresholdBase: thresholdBase, thresholdSpike: thresholdSpike,
+                                                       thresholdDecayPercent: thresholdDecayPercent,
+                                                       thresholdDecayConstant: thresholdDecayConstant,
+                                                       signalStrength: signalStrength, dendriteType: "paired",
+                                                       targetNeuron: targetNeuronLocation, returnNeuron: this,
+                                                       dendriteThreshReductionMultiplier:
+                                                           directionNeuronDendriteThreshReductionMultiplier));
+                }
             }
 
 
@@ -74,6 +89,8 @@ namespace EyeBotReboot.Components.Neurons
                                                    thresholdDecayConstant: thresholdDecayConstant,
                                                    signalStrength: signalStrength));
                 //CHECK THE LOGIC ON THIS INDEX LOCATION
+
+                //direction field section here
             }
         }
 
@@ -81,7 +98,7 @@ namespace EyeBotReboot.Components.Neurons
         public int YLocation { get; set; } //theoretically don't need if eye muscle localization works out as expected
         public double Value { get; set; }
         public double Charge { get; set; }
-        public List<InitiationAxonOneWay> Axons { get; set; }
+        public List<IAxon> Axons { get; set; }
 
         public void NewTurn()
         {

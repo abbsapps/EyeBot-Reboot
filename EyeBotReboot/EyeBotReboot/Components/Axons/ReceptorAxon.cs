@@ -8,7 +8,7 @@ using EyeBotReboot.Components.Neurons;
 
 namespace EyeBotReboot.Components.Axons
 {
-    public class ReceptorAxon: IAxon
+    public class ReceptorAxon
     {
         public ReceptorAxon(string dendriteType, LaplaceFilter targetNeuron)
         {

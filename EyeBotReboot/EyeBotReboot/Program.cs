@@ -89,7 +89,8 @@ namespace EyeBotReboot
                                                                               thresholdBase: 3, thresholdSpike: 0,
                                                                               thresholdDecayPercent: .2,
                                                                               thresholdDecayConstant: .3,
-                                                                              signalStrength: 3);
+                                                                              signalStrength: 3,
+                                                                              directionNeuronDendriteThreshReductionMultiplier : 5); //THIS IS NEED OF HEAVY TWEEKING / TESTING
 
             GlobalLayersKnowledge.ReceptorField = new ReceptorField(fieldWidth: receptorFieldWidth,
                                                                     fieldHeight: receptorFieldHeight,

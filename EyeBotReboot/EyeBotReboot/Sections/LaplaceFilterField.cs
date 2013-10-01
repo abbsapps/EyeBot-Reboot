@@ -8,7 +8,7 @@ namespace EyeBotReboot.Sections
 {
     public class LaplaceFilterField
     {
-        public LaplaceFilterField(int fieldWidth, int fieldHeight, double focusDensity, double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength)
+        public LaplaceFilterField(int fieldWidth, int fieldHeight, double focusDensity, double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength, double directionNeuronDendriteThreshReductionMultiplier)
         {
             Field = new List<LaplaceFilter>();
             TemporaryFieldByLocation = new List<List<LaplaceFilter>>(); //might not need?
@@ -17,7 +17,13 @@ namespace EyeBotReboot.Sections
                 TemporaryFieldByLocation.Add(new List<LaplaceFilter>());
                 for (int j = (int)(-1 * (.5 * fieldHeight)); j < (int)(.5 * fieldHeight); j++)
                 {
-                    var newLaplaceFilter = new LaplaceFilter(xLocation: i, yLocation: j, thresholdBase: thresholdBase, thresholdSpike: thresholdSpike, thresholdDecayPercent: thresholdDecayPercent, thresholdDecayConstant: thresholdDecayConstant, signalStrength: signalStrength);
+                    var newLaplaceFilter = new LaplaceFilter(xLocation: i, yLocation: j, thresholdBase: thresholdBase,
+                                                             thresholdSpike: thresholdSpike,
+                                                             thresholdDecayPercent: thresholdDecayPercent,
+                                                             thresholdDecayConstant: thresholdDecayConstant,
+                                                             signalStrength: signalStrength,
+                                                             directionNeuronDendriteThreshReductionMultiplier:
+                                                                 directionNeuronDendriteThreshReductionMultiplier);
                     Field.Add(newLaplaceFilter);
                     TemporaryFieldByLocation[i + (int)(.5 * fieldWidth)].Add(newLaplaceFilter);
                 }
