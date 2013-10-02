@@ -8,20 +8,20 @@ namespace EyeBotReboot.Components.Axons
 {
     public class InitiationAxonTwoWay: IAxonPaired
     {
-        public InitiationAxonTwoWay(double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength, string dendriteType, INeuron targetNeuron, INeuron returnNeuron, double dendriteThreshReductionMultiplier)
+        public InitiationAxonTwoWay(double outboundThresholdBase, double outboundThresholdSpike, double outboundThresholdDecayPercent, double outboundThresholdDecayConstant, double outboundSignalStrength, string outboundDendriteType, double outboundDendriteThreshReductionMultiplier, double inboundThresholdBase, double inboundThresholdSpike, double inboundThresholdDecayPercent, double inboundThresholdDecayConstant, double inboundSignalStrength, string inboundDendriteType, double inboundDendriteThreshReductionMultiplier, INeuron targetNeuron, INeuron returnNeuron)
         {
-            ThresholdBase = thresholdBase;
-            ThresholdSpike = thresholdSpike;
-            ThresholdDecayPercent = thresholdDecayPercent;
-            ThresholdDecayConstant = thresholdDecayConstant;
-            Threshold = thresholdBase;
-            SignalStrength = signalStrength;
+            ThresholdBase = outboundThresholdBase;
+            ThresholdSpike = outboundThresholdSpike;
+            ThresholdDecayPercent = outboundThresholdDecayPercent;
+            ThresholdDecayConstant = outboundThresholdDecayConstant;
+            Threshold = outboundThresholdBase;
+            SignalStrength = outboundSignalStrength;
             Dendrite = new PairedDendrite(targetNeuron: targetNeuron, returnNeuron: returnNeuron, returnAxon: this,
-                                          threshReductionMultiplier: dendriteThreshReductionMultiplier,
-                                          thresholdBase: thresholdBase, thresholdSpike: thresholdSpike,
-                                          thresholdDecayPercent: thresholdDecayPercent,
-                                          thresholdDecayConstant: thresholdDecayConstant,
-                                          signalStrength: signalStrength);
+                                          selfThreshReductionMultiplier: outboundDendriteThreshReductionMultiplier,
+                                          pairedAxonThresholdBase: inboundThresholdBase, pairedAxonThresholdSpike: inboundThresholdSpike,
+                                          pairedAxonThresholdDecayPercent: inboundThresholdDecayPercent,
+                                          pairedAxonThresholdDecayConstant: inboundThresholdDecayConstant,
+                                          pairedAxonSignalStrength: inboundSignalStrength, returnDendriteThreshReductionMultiplier: inboundDendriteThreshReductionMultiplier);
         }
         public double ThresholdBase { get; set; }
         public double ThresholdSpike { get; set; }

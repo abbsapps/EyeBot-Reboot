@@ -9,7 +9,7 @@ namespace EyeBotReboot.Components.Neurons
 {
     public class LaplaceFilter: INeuron
     {
-        public LaplaceFilter(int xLocation, int yLocation, double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength, double directionNeuronDendriteThreshReductionMultiplier)
+        public LaplaceFilter(int xLocation, int yLocation, double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength, double directionNeuronOutboundThresholdBase, double directionNeuronOutboundThresholdSpike, double directionNeuronOutboundThresholdDecayPercent, double directionNeuronOutboundThresholdDecayConstant, double directionNeuronOutboundSignalStrength, double directionNeuronOutboundDendriteThresholdReductionMultiplier, double directionNeuronInboundThresholdBase, double directionNeuronInboundThresholdSpike, double directionNeuronInboundThresholdDecayPercent, double directionNeuronInboundThresholdDecayConstant, double directionNeuronInboundSignalStrength, double directionNeuronInboundDendriteThresholdReductionMultiplier)
         {
             Axons = new List<IAxon>();
             Charge = 0;
@@ -51,7 +51,7 @@ namespace EyeBotReboot.Components.Neurons
 
                 //direction field section here
                 foreach (var directionField in GlobalLayersKnowledge.DirectionSuperField.DirectionFields) //I AM EXTREMELY WARY OF THIS CODE FOR NOW.  
-                    //I'M PRETTY SURE ALL THRESH THESE CONSTRUCTOR VARIABLES SHOULD FOR LAPLACE-FILTER-TO-DIRECTION-NEURON AXONS NOT BE THE SAME AS THE 
+                    //I'M PRETTY SURE ALL THESE THRESH CONSTRUCTOR VARIABLES SHOULD FOR LAPLACE-FILTER-TO-DIRECTION-NEURON AXONS NOT BE THE SAME AS THE 
                     //LAPLACE-FILTER-TO-SECTOR-NEURON AXONS, WHICH IS CURRENTLY THE CASE.  SO... MAYBE I HAVE TO ADD EXTRA SET OF INPUTS FOR LAPLACE FILTERS 
                     //WHICH IS WHAT THEIR AXONS-TO-DIRECTION-NEURONS SHOULD HAVE AS VALUES? ALSO NEEDING TO BE CONSIDERED: DIRECTION-NEURON-TO-LAPLACE-FILTER
                     //SENDING IS UNDER CURRENT DESIGN SUPPOSED TO HAVE A VERY VERY HIGH PAIRED-AXON-THRESH-LOWERING MULTIPLIER, BUT UNDER CURRENT DESIGN IT 
@@ -61,13 +61,19 @@ namespace EyeBotReboot.Components.Neurons
                     var xIndex = xLocation + (int)comparitiveXLocation;
                     var yIndex = yLocation + (int)comparitiveYLocation;
                     var targetNeuronLocation = directionField.TemporaryFieldByLocation[xIndex][yIndex];
-                    Axons.Add(new InitiationAxonTwoWay(thresholdBase: thresholdBase, thresholdSpike: thresholdSpike,
-                                                       thresholdDecayPercent: thresholdDecayPercent,
-                                                       thresholdDecayConstant: thresholdDecayConstant,
-                                                       signalStrength: signalStrength, dendriteType: "paired",
-                                                       targetNeuron: targetNeuronLocation, returnNeuron: this,
-                                                       dendriteThreshReductionMultiplier:
-                                                           directionNeuronDendriteThreshReductionMultiplier));
+                    Axons.Add(new InitiationAxonTwoWay(outboundThresholdBase: directionNeuronOutboundThresholdBase, outboundThresholdSpike: directionNeuronOutboundThresholdSpike,
+                                                       outboundThresholdDecayPercent: directionNeuronOutboundThresholdDecayPercent,
+                                                       outboundThresholdDecayConstant: directionNeuronOutboundThresholdDecayConstant,
+                                                       outboundSignalStrength: directionNeuronOutboundSignalStrength, outboundDendriteType: "paired",
+                                                       outboundDendriteThreshReductionMultiplier: directionNeuronOutboundDendriteThresholdReductionMultiplier, 
+                                                       inboundThresholdBase: directionNeuronInboundThresholdBase,
+                                                       inboundThresholdSpike: directionNeuronInboundThresholdSpike,
+                                                       inboundThresholdDecayPercent: directionNeuronInboundThresholdDecayPercent,
+                                                       inboundThresholdDecayConstant: directionNeuronInboundThresholdDecayConstant,
+                                                       inboundSignalStrength: directionNeuronInboundSignalStrength,
+                                                       inboundDendriteType: "paired",
+                                                       inboundDendriteThreshReductionMultiplier: directionNeuronInboundDendriteThresholdReductionMultiplier,
+                                                       targetNeuron: targetNeuronLocation, returnNeuron: this));
                 }
             }
 
@@ -94,9 +100,6 @@ namespace EyeBotReboot.Components.Neurons
                                                    thresholdDecayPercent: thresholdDecayPercent,
                                                    thresholdDecayConstant: thresholdDecayConstant,
                                                    signalStrength: signalStrength));
-                //CHECK THE LOGIC ON THIS INDEX LOCATION
-
-                //direction field section here
             }
         }
 

@@ -8,7 +8,7 @@ namespace EyeBotReboot.Sections
 {
     public class LaplaceFilterField
     {
-        public LaplaceFilterField(int fieldWidth, int fieldHeight, double focusDensity, double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength, double directionNeuronDendriteThreshReductionMultiplier)
+        public LaplaceFilterField(int fieldWidth, int fieldHeight, double focusDensity, double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength, double directionNeuronOutboundThresholdBase, double directionNeuronOutboundThresholdSpike, double directionNeuronOutboundThresholdDecayPercent, double directionNeuronOutboundThresholdDecayConstant, double directionNeuronOutboundSignalStrength, double directionNeuronOutboundDendriteThresholdReductionMultiplier, double directionNeuronInboundThresholdBase, double directionNeuronInboundThresholdSpike, double directionNeuronInboundThresholdDecayPercent, double directionNeuronInboundThresholdDecayConstant, double directionNeuronInboundSignalStrength, double directionNeuronInboundDendriteThresholdReductionMultiplier)
         {
             Field = new List<LaplaceFilter>();
             TemporaryFieldByLocation = new List<List<LaplaceFilter>>(); //might not need?
@@ -22,8 +22,18 @@ namespace EyeBotReboot.Sections
                                                              thresholdDecayPercent: thresholdDecayPercent,
                                                              thresholdDecayConstant: thresholdDecayConstant,
                                                              signalStrength: signalStrength,
-                                                             directionNeuronDendriteThreshReductionMultiplier:
-                                                                 directionNeuronDendriteThreshReductionMultiplier);
+                                                             directionNeuronOutboundThresholdBase: 1,
+                                                             directionNeuronOutboundThresholdSpike: 1,
+                                                             directionNeuronOutboundThresholdDecayPercent: .1,
+                                                             directionNeuronOutboundThresholdDecayConstant: 1,
+                                                             directionNeuronOutboundSignalStrength: 1,
+                                                             directionNeuronOutboundDendriteThresholdReductionMultiplier : 5,
+                                                             directionNeuronInboundThresholdBase: 1,
+                                                             directionNeuronInboundThresholdSpike: 1,
+                                                             directionNeuronInboundThresholdDecayPercent: .1,
+                                                             directionNeuronInboundThresholdDecayConstant: 1,
+                                                             directionNeuronInboundSignalStrength: 1,
+                                                             directionNeuronInboundDendriteThresholdReductionMultiplier: 5);
                     Field.Add(newLaplaceFilter);
                     TemporaryFieldByLocation[i + (int)(.5 * fieldWidth)].Add(newLaplaceFilter);
                 }

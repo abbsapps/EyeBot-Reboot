@@ -90,7 +90,18 @@ namespace EyeBotReboot
                                                                               thresholdDecayPercent: .2,
                                                                               thresholdDecayConstant: .3,
                                                                               signalStrength: 3,
-                                                                              directionNeuronDendriteThreshReductionMultiplier : 5); //THIS IS NEED OF HEAVY TWEEKING / TESTING
+                                                                              directionNeuronOutboundThresholdBase: 1,
+                                                                              directionNeuronOutboundThresholdSpike: 1,
+                                                                              directionNeuronOutboundThresholdDecayPercent: .1,
+                                                                              directionNeuronOutboundThresholdDecayConstant: 1,
+                                                                              directionNeuronOutboundSignalStrength: 1,
+                                                                              directionNeuronOutboundDendriteThresholdReductionMultiplier : 5,
+                                                                              directionNeuronInboundThresholdBase: 1,
+                                                                              directionNeuronInboundThresholdSpike: 1,
+                                                                              directionNeuronInboundThresholdDecayPercent: .1,
+                                                                              directionNeuronInboundThresholdDecayConstant: 1,
+                                                                              directionNeuronInboundSignalStrength: 1,
+                                                                              directionNeuronInboundDendriteThresholdReductionMultiplier: 5);//THIS IS NEED OF HEAVY TWEEKING / TESTING
 
             GlobalLayersKnowledge.ReceptorField = new ReceptorField(fieldWidth: receptorFieldWidth,
                                                                     fieldHeight: receptorFieldHeight,

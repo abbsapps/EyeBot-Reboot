@@ -17,11 +17,7 @@ namespace EyeBotReboot.Components.Neurons
                         double representativeThresholdBase, double representativeDirectionThresholdSpike,
                         double representativeDirectionThresholdDecayPercent,
                         double representativeDirectionThresholdDecayConstant,
-                        double representativeDirectionSignalStrength,
-
-                        double laplaceFilterThresholdBase, double laplaceFilterThresholdSpike,
-                        double laplaceFilterThresholdDecayPercent, double laplaceFilterThresholdDecayConstant,
-                        double laplaceFilterSignalStrength)
+                        double representativeDirectionSignalStrength)
         {
             Charge = 0;
             Axons = new List<IAxonPaired>();

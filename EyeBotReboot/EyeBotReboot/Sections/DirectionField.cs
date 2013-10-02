@@ -50,12 +50,7 @@ namespace EyeBotReboot.Sections
                                                                  representativeDirectionThresholdSpike: representativeDirectionThresholdSpike,
                                                                  representativeDirectionThresholdDecayPercent: representativeDirectionThresholdDecayPercent,
                                                                  representativeDirectionThresholdDecayConstant: representativeDirectionThresholdDecayConstant,
-                                                                 representativeDirectionSignalStrength: representativeDirectionSignalStrength,
-                                                                 laplaceFilterThresholdBase: laplaceFilterThresholdBase,
-                                                                 laplaceFilterThresholdSpike: laplaceFilterThresholdSpike,
-                                                                 laplaceFilterThresholdDecayPercent: laplaceFilterThresholdDecayPercent,
-                                                                 laplaceFilterThresholdDecayConstant: laplaceFilterThresholdDecayConstant,
-                                                                 laplaceFilterSignalStrength: laplaceFilterSignalStrength);
+                                                                 representativeDirectionSignalStrength: representativeDirectionSignalStrength);
 
                     Field.Add(newDirectionNeuron);
                     TemporaryFieldByLocation[i].Add(newDirectionNeuron); //pretty sure it should be okay to use this instead of more complicated below code
@@ -180,16 +175,24 @@ namespace EyeBotReboot.Sections
                         var neuronTarget = TemporaryFieldByLocation[xIndexTargetNeuron][yIndexTargetNeuron];
 
                         neuronInitiator.Axons.Add(
-                            new InitiationAxonTwoWay(thresholdBase: otherDirectionThresholdBase,
-                                                     thresholdSpike: otherDirectionThresholdSpike,
-                                                     thresholdDecayPercent: otherDirectionThresholdDecayPercent,
-                                                     thresholdDecayConstant: otherDirectionThresholdDecayConstant,
-                                                     signalStrength: otherDirectionSignalStrength,
-                                                     dendriteType: "paired",
+                            new InitiationAxonTwoWay(outboundThresholdBase: otherDirectionThresholdBase,
+                                                     outboundThresholdSpike: otherDirectionThresholdSpike,
+                                                     outboundThresholdDecayPercent: otherDirectionThresholdDecayPercent,
+                                                     outboundThresholdDecayConstant: otherDirectionThresholdDecayConstant,
+                                                     outboundSignalStrength: otherDirectionSignalStrength,
+                                                     outboundDendriteType: "paired",
+                                                     outboundDendriteThreshReductionMultiplier:
+                                                         otherDirectionThreshReductionMultiplier,
+                                                     inboundThresholdBase: otherDirectionThresholdBase,
+                                                     inboundThresholdSpike: otherDirectionThresholdSpike,
+                                                     inboundThresholdDecayPercent: otherDirectionThresholdDecayPercent,
+                                                     inboundThresholdDecayConstant: otherDirectionThresholdDecayConstant,
+                                                     inboundSignalStrength: otherDirectionSignalStrength,
+                                                     inboundDendriteType: "paired",
+                                                     inboundDendriteThreshReductionMultiplier: otherDirectionThreshReductionMultiplier,
                                                      targetNeuron: neuronTarget,
-                                                     returnNeuron: neuronInitiator,
-                                                     dendriteThreshReductionMultiplier:
-                                                         otherDirectionThreshReductionMultiplier));
+                                                     returnNeuron: neuronInitiator
+                                                     ));
                     }
                 }
             }
