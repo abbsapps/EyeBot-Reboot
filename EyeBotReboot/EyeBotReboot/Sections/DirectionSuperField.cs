@@ -17,11 +17,7 @@ namespace EyeBotReboot.Sections
                                    double representativeThresholdBase, double representativeDirectionThresholdSpike,
                                    double representativeDirectionThresholdDecayPercent,
                                    double representativeDirectionThresholdDecayConstant,
-                                   double representativeDirectionSignalStrength,
-
-                                   double laplaceFilterThresholdBase, double laplaceFilterThresholdSpike,
-                                   double laplaceFilterThresholdDecayPercent, double laplaceFilterThresholdDecayConstant,
-                                   double laplaceFilterSignalStrength)
+                                   double representativeDirectionSignalStrength)
         {
             DirectionFields = new List<DirectionField>();
             foreach (var direction in directions)
@@ -41,12 +37,7 @@ namespace EyeBotReboot.Sections
                                                                       representativeDirectionThresholdSpike: representativeDirectionThresholdSpike,
                                                                       representativeDirectionThresholdDecayPercent: representativeDirectionThresholdDecayPercent,
                                                                       representativeDirectionThresholdDecayConstant: representativeDirectionThresholdDecayConstant,
-                                                                      representativeDirectionSignalStrength: representativeDirectionSignalStrength,
-                                                                      laplaceFilterThresholdBase: laplaceFilterThresholdBase,
-                                                                      laplaceFilterThresholdSpike: laplaceFilterThresholdSpike,
-                                                                      laplaceFilterThresholdDecayPercent: laplaceFilterThresholdDecayPercent,
-                                                                      laplaceFilterThresholdDecayConstant: laplaceFilterThresholdDecayConstant,
-                                                                      laplaceFilterSignalStrength: laplaceFilterSignalStrength);
+                                                                      representativeDirectionSignalStrength: representativeDirectionSignalStrength);
                 DirectionFields.Add(newDirectionField);
             }
         }

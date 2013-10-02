@@ -58,12 +58,7 @@ namespace EyeBotReboot
                                                                                 representativeDirectionThresholdSpike: 1,
                                                                                 representativeDirectionThresholdDecayPercent : 1,
                                                                                 representativeDirectionThresholdDecayConstant : 1,
-                                                                                representativeDirectionSignalStrength: 1,
-                                                                                laplaceFilterThresholdBase: 1,
-                                                                                laplaceFilterThresholdSpike: 1,
-                                                                                laplaceFilterThresholdDecayPercent: 1,
-                                                                                laplaceFilterThresholdDecayConstant: 1,
-                                                                                laplaceFilterSignalStrength: 1);
+                                                                                representativeDirectionSignalStrength: 1);
 
             GlobalLayersKnowledge.MacroSectorField = new MacroSectorField(fieldWidth: receptorFieldWidth,
                                                                           fieldHeight: receptorFieldHeight,
@@ -90,12 +85,14 @@ namespace EyeBotReboot
                                                                               thresholdDecayPercent: .2,
                                                                               thresholdDecayConstant: .3,
                                                                               signalStrength: 3,
+
                                                                               directionNeuronOutboundThresholdBase: 1,
                                                                               directionNeuronOutboundThresholdSpike: 1,
                                                                               directionNeuronOutboundThresholdDecayPercent: .1,
                                                                               directionNeuronOutboundThresholdDecayConstant: 1,
                                                                               directionNeuronOutboundSignalStrength: 1,
                                                                               directionNeuronOutboundDendriteThresholdReductionMultiplier : 5,
+
                                                                               directionNeuronInboundThresholdBase: 1,
                                                                               directionNeuronInboundThresholdSpike: 1,
                                                                               directionNeuronInboundThresholdDecayPercent: .1,
