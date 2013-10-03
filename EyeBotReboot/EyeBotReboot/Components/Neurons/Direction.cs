@@ -29,6 +29,11 @@ namespace EyeBotReboot.Components.Neurons
         public double Charge { get; set; }
         public List<IAxonPaired> Axons { get; set; }
 
+        public void NewTurn()
+        {
+            
+        }
+
         //for testing purposes
         public Guid Id { get; set; }
         //end for testing purposes

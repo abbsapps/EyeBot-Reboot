@@ -43,5 +43,13 @@ namespace EyeBotReboot.Sections
         }
 
         public List<DirectionField> DirectionFields { get; set; } 
+
+        public void NewTurn()
+        {
+            foreach (var directionField in DirectionFields)
+            {
+                directionField.NewTurn();
+            }   
+        }
     }
 }

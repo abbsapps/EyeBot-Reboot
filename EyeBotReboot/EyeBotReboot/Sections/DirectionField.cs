@@ -202,5 +202,13 @@ namespace EyeBotReboot.Sections
 
         public double WidthPercent { get; set; }
         public double HeightPercent { get; set; }
+
+        public void NewTurn()
+        {
+            foreach (var directionNeuron in Field)
+            {
+                directionNeuron.NewTurn();
+            }
+        }
     }
 }

@@ -23,5 +23,9 @@ namespace EyeBotReboot.Components.Dendrites
         public INeuron Neuron { get; set; }
         public ReturnAxon PairedAxon { get; set; }
         public double AxonThreshReductionMultiplier { get; set; }
+        public void Fire()
+        {
+            
+        }
     }
 }
