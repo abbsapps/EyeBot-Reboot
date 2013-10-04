@@ -31,7 +31,18 @@ namespace EyeBotReboot.Components.Neurons
 
         public void NewTurn()
         {
-            
+            foreach (var axon in Axons)
+            {
+                if (Charge > axon.Threshold)
+                {
+                    
+                }
+            }
+
+            foreach (var axon in Axons)
+            {
+                axon.NewTurn();
+            }
         }
 
         //for testing purposes

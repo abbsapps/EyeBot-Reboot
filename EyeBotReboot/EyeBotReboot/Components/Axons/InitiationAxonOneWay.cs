@@ -45,6 +45,14 @@ namespace EyeBotReboot.Components.Axons
                     Threshold = ThresholdBase;
                 }
             }
+            else if (Threshold < ThresholdBase)
+            {
+                Threshold += ((ThresholdDecayPercent * (Threshold - ThresholdBase)) + ThresholdDecayConstant);
+                if (Threshold > ThresholdBase)
+                {
+                    Threshold = ThresholdBase;
+                }
+            }
         }
 
 

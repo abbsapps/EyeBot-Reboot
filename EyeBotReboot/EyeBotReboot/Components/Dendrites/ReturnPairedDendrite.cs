@@ -18,6 +18,14 @@ namespace EyeBotReboot.Components.Dendrites
         public string DendriteType { get; set; }
         public INeuron Neuron { get; set; }
         public InitiationAxonTwoWay PairedAxon { get; set; }
-        public double AxonThreshReduction { get; set; }
+        public double AxonThreshReductionMultiplier { get; set; }
+        public double IncomingCharge { get; set; }
+
+        public void Fire()
+        {
+            Neuron.Charge += IncomingCharge;
+            PairedAxon.Threshold -= (IncomingCharge * AxonThreshReductionMultiplier);
+            IncomingCharge = 0;
+        }
     }
 }

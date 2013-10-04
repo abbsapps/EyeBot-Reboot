@@ -150,7 +150,7 @@ namespace EyeBotReboot.Sections
                             TemporaryFieldByLocation[connectionIndexByLocation[firstLayer][neuronIndexPosition][0]][
                                 connectionIndexByLocation[firstLayer][neuronIndexPosition][1]].Axons)
                     {
-                        if (axon.Dendrite.PairedAxon.PairedDendrite.Neuron ==
+                        if (axon.Dendrite.PairedAxon.Dendrite.Neuron ==
                             TemporaryFieldByLocation[connectionIndexByLocation[firstLayer][neuronIndexPosition][0]][
                                 connectionIndexByLocation[firstLayer][neuronIndexPosition][1]])
                         {

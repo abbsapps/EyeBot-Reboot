@@ -61,19 +61,19 @@ namespace EyeBotReboot.Components.Neurons
                     var xIndex = xLocation + (int)comparitiveXLocation;
                     var yIndex = yLocation + (int)comparitiveYLocation;
                     var targetNeuronLocation = directionField.TemporaryFieldByLocation[xIndex][yIndex];
-                    Axons.Add(new InitiationAxonTwoWay(outboundThresholdBase: directionNeuronOutboundThresholdBase, outboundThresholdSpike: directionNeuronOutboundThresholdSpike,
-                                                       outboundThresholdDecayPercent: directionNeuronOutboundThresholdDecayPercent,
-                                                       outboundThresholdDecayConstant: directionNeuronOutboundThresholdDecayConstant,
-                                                       outboundSignalStrength: directionNeuronOutboundSignalStrength, outboundDendriteType: "paired",
-                                                       outboundDendriteThreshReductionMultiplier: directionNeuronOutboundDendriteThresholdReductionMultiplier, 
-                                                       inboundThresholdBase: directionNeuronInboundThresholdBase,
-                                                       inboundThresholdSpike: directionNeuronInboundThresholdSpike,
-                                                       inboundThresholdDecayPercent: directionNeuronInboundThresholdDecayPercent,
-                                                       inboundThresholdDecayConstant: directionNeuronInboundThresholdDecayConstant,
-                                                       inboundSignalStrength: directionNeuronInboundSignalStrength,
-                                                       inboundDendriteType: "paired",
-                                                       inboundDendriteThreshReductionMultiplier: directionNeuronInboundDendriteThresholdReductionMultiplier,
-                                                       targetNeuron: targetNeuronLocation, returnNeuron: this));
+                    //Axons.Add(new InitiationAxonTwoWay(outboundThresholdBase: directionNeuronOutboundThresholdBase, outboundThresholdSpike: directionNeuronOutboundThresholdSpike,
+                    //                                   outboundThresholdDecayPercent: directionNeuronOutboundThresholdDecayPercent,
+                    //                                   outboundThresholdDecayConstant: directionNeuronOutboundThresholdDecayConstant,
+                    //                                   outboundSignalStrength: directionNeuronOutboundSignalStrength, outboundDendriteType: "paired",
+                    //                                   outboundDendriteThreshReductionMultiplier: directionNeuronOutboundDendriteThresholdReductionMultiplier, 
+                    //                                   inboundThresholdBase: directionNeuronInboundThresholdBase,
+                    //                                   inboundThresholdSpike: directionNeuronInboundThresholdSpike,
+                    //                                   inboundThresholdDecayPercent: directionNeuronInboundThresholdDecayPercent,
+                    //                                   inboundThresholdDecayConstant: directionNeuronInboundThresholdDecayConstant,
+                    //                                   inboundSignalStrength: directionNeuronInboundSignalStrength,
+                    //                                   inboundDendriteType: "paired",
+                    //                                   inboundDendriteThreshReductionMultiplier: directionNeuronInboundDendriteThresholdReductionMultiplier,
+                    //                                   targetNeuron: targetNeuronLocation, returnNeuron: this));
                 }
             }
 
@@ -109,29 +109,36 @@ namespace EyeBotReboot.Components.Neurons
         public double Charge { get; set; }
         public List<IAxon> Axons { get; set; }
 
-        public void NewTurn()
+        public void NewTurn() //something maybe worth considering would be to c
         {
-            foreach (var axon in Axons)
-            {
-                while (axon.Threshold > axon.ThresholdBase) //DEFINITELY LOOK INTO WHILE LOOP HERE - PRETTY POSITIVE THAT IS THE RIGHT ROUTE TO GO.
-                {
-                    axon.Threshold -= ((axon.ThresholdDecayPercent*(axon.Threshold - axon.ThresholdBase)) + axon.ThresholdDecayConstant);
-                    if (axon.Threshold < axon.ThresholdBase)
-                    {
-                        axon.Threshold = axon.ThresholdBase;
-                    }
-                }
-                if (Charge > axon.Threshold)
-                {
-                    axon.Fire();
-                    Charge -= axon.SignalStrength;
-                }
-            }
-            if (Charge > 2) //2 needs to be ultimately based on some insput Charge.  NO ARBITRARIES EXCEPT AT THE SYSTEM BUILD LEVEL.  Current 2 is just for testing purposes.  Also XLocation and YLocation ultimately may be removed... though not quite sure yet whether they are necessary for the Muscle movement
+            if (Charge > 2) // tHis is purely for visual testing
             {
                 GlobalLayersKnowledge.Perception.SetPixel(XLocation + (int)(.5 * GlobalLayersKnowledge.Perception.Width), YLocation + (int)(.5 * GlobalLayersKnowledge.Perception.Height), Color.White);
-            //    Charge = Charge - 2;
             }
+
+            //bool keepLooping = true;
+            //while (keepLooping)
+            //{
+            //    keepLooping = false; //keepLooping bool is to allow the neuron to keep firing axons until its charge no longer exceeds any axon's threshold. This is because otherwise an axon would have a limit of one fire per turn.  That aint cool
+                
+                foreach (var axon in Axons)
+                {
+                    if (Charge > axon.Threshold)
+                    {
+                        axon.Fire();
+                        Charge -= axon.SignalStrength;
+
+              //          keepLooping = true;
+                    }
+                }
+            //}
+
+            foreach (var axon in Axons)
+            {
+                axon.NewTurn();
+            }
+
+
         }
     }
 }

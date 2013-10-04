@@ -14,5 +14,6 @@ namespace EyeBotReboot.Components
         double ThresholdDecayPercent { get; set; }
         double SignalStrength { get; set; }
         void Fire();
+        void NewTurn();
     }
 }

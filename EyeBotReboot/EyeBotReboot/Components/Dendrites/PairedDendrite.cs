@@ -12,6 +12,7 @@ namespace EyeBotReboot.Components.Dendrites
         {
             DendriteType = "paired";
             Neuron = targetNeuron;
+            AxonThreshReductionMultiplier = selfThreshReductionMultiplier;
             PairedAxon = new ReturnAxon(thresholdBase: pairedAxonThresholdBase, thresholdSpike: pairedAxonThresholdSpike,
                                         dendriteThreshReductionMultiplier: returnDendriteThreshReductionMultiplier,
                                         thresholdDecayPercent: pairedAxonThresholdDecayPercent,
@@ -23,9 +24,14 @@ namespace EyeBotReboot.Components.Dendrites
         public INeuron Neuron { get; set; }
         public ReturnAxon PairedAxon { get; set; }
         public double AxonThreshReductionMultiplier { get; set; }
+        public double IncomingCharge { get; set; }
+
+
         public void Fire()
         {
-            
+            Neuron.Charge += IncomingCharge;
+            PairedAxon.Threshold -= (IncomingCharge*AxonThreshReductionMultiplier);
+            IncomingCharge = 0;
         }
     }
 }

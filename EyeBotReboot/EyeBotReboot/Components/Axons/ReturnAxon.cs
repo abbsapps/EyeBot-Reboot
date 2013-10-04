@@ -16,7 +16,7 @@ namespace EyeBotReboot.Components.Axons
             ThresholdDecayConstant = thresholdDecayConstant;
             Threshold = thresholdBase;
             SignalStrength = signalStrength;
-            PairedDendrite = new ReturnPairedDendrite(pairedAxon: returnAxon, returnNeuron: returnNeuron,
+            Dendrite = new ReturnPairedDendrite(pairedAxon: returnAxon, returnNeuron: returnNeuron,
                                                       threshReductionMultiplier: dendriteThreshReductionMultiplier,
                                                       thresholdBase: thresholdBase, thresholdSpike: thresholdSpike,
                                                       thresholdDecayPercent: thresholdDecayPercent,
@@ -31,11 +31,33 @@ namespace EyeBotReboot.Components.Axons
         public double Threshold { get; set; }
         public double SignalStrength { get; set; }
 
-        public ReturnPairedDendrite PairedDendrite { get; set; }
+        public ReturnPairedDendrite Dendrite { get; set; }
 
         public void Fire()
         {
-            
+            Dendrite.IncomingCharge += SignalStrength;
+            Threshold += ThresholdSpike;
+            Dendrite.Fire();
+        }
+
+        public void NewTurn()
+        {
+            if (Threshold > ThresholdBase)
+            {
+                Threshold -= ((ThresholdDecayPercent * (Threshold - ThresholdBase)) + ThresholdDecayConstant);
+                if (Threshold < ThresholdBase)
+                {
+                    Threshold = ThresholdBase;
+                }
+            }
+            else if (Threshold < ThresholdBase)
+            {
+                Threshold += ((ThresholdDecayPercent * (Threshold - ThresholdBase)) + ThresholdDecayConstant);
+                if (Threshold > ThresholdBase)
+                {
+                    Threshold = ThresholdBase;
+                }
+            }
         }
     }
 }

@@ -32,9 +32,31 @@ namespace EyeBotReboot.Components.Axons
 
         public PairedDendrite Dendrite { get; set; }
 
-        public void Fire()//IMPORTANT NOTE: remember to add in paired axon thresh lowering here.  Complication is that this should actually be able to lower the axon thresh to sub-thresh-base values, which means I will have to change the logic of paired axons to enable sub-base-threshold thresholds.  To address this maybe add a "ThreshMinimum" property to paired axons?
+        public void Fire()
         {
-         
+            Dendrite.IncomingCharge += SignalStrength;
+            Threshold += ThresholdSpike;
+            Dendrite.Fire();
+        }
+
+        public void NewTurn()
+        {
+            if (Threshold > ThresholdBase)
+            {
+                Threshold -= ((ThresholdDecayPercent * (Threshold - ThresholdBase)) + ThresholdDecayConstant);
+                if (Threshold < ThresholdBase)
+                {
+                    Threshold = ThresholdBase;
+                }
+            }
+            else if (Threshold < ThresholdBase)
+            {
+                Threshold += ((ThresholdDecayPercent * (Threshold - ThresholdBase)) + ThresholdDecayConstant);
+                if (Threshold > ThresholdBase)
+                {
+                    Threshold = ThresholdBase;
+                }
+            }
         }
     }
 }
