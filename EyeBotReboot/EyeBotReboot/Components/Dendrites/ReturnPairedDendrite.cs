@@ -6,7 +6,7 @@ using EyeBotReboot.Components.Axons;
 
 namespace EyeBotReboot.Components.Dendrites
 {
-    public class ReturnPairedDendrite
+    public class ReturnPairedDendrite: IDendrite
     {
         public ReturnPairedDendrite(InitiationAxonTwoWay pairedAxon, double threshReductionMultiplier, INeuron returnNeuron, double thresholdBase, double thresholdSpike, double thresholdDecayPercent, double thresholdDecayConstant, double signalStrength)
         {

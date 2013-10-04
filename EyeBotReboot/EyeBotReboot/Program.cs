@@ -48,13 +48,13 @@ namespace EyeBotReboot
                                                                                 fieldHeight: receptorFieldHeight,
                                                                                 fieldHeightPercent: .1,
                                                                                 fieldWidthPercent: .1,
-                                                                                otherDirectionThreshReductionMultiplier: 1,
-                                                                                otherDirectionThresholdBase: 1000,
+                                                                                otherDirectionThreshReductionMultiplier: 3,
+                                                                                otherDirectionThresholdBase: 1,
                                                                                 otherDirectionThresholdSpike: 1,
                                                                                 otherDirectionThresholdDecayPercent: 1,
                                                                                 otherDirectionThresholdDecayConstant: 1,
                                                                                 otherDirectionSignalStrength: 1,
-                                                                                representativeThresholdBase: 1000,
+                                                                                representativeThresholdBase: 1,
                                                                                 representativeDirectionThresholdSpike: 1,
                                                                                 representativeDirectionThresholdDecayPercent : 1,
                                                                                 representativeDirectionThresholdDecayConstant : 1,
@@ -86,19 +86,19 @@ namespace EyeBotReboot
                                                                               thresholdDecayConstant: .3,
                                                                               signalStrength: 3,
 
-                                                                              directionNeuronOutboundThresholdBase: 1000,
+                                                                              directionNeuronOutboundThresholdBase: 1,
                                                                               directionNeuronOutboundThresholdSpike: 1,
                                                                               directionNeuronOutboundThresholdDecayPercent: .1,
                                                                               directionNeuronOutboundThresholdDecayConstant: 1,
                                                                               directionNeuronOutboundSignalStrength: 1,
                                                                               directionNeuronOutboundDendriteThresholdReductionMultiplier : 5,
 
-                                                                              directionNeuronInboundThresholdBase: 1000,
+                                                                              directionNeuronInboundThresholdBase: 1,
                                                                               directionNeuronInboundThresholdSpike: 1,
                                                                               directionNeuronInboundThresholdDecayPercent: .1,
                                                                               directionNeuronInboundThresholdDecayConstant: 1,
                                                                               directionNeuronInboundSignalStrength: 1,
-                                                                              directionNeuronInboundDendriteThresholdReductionMultiplier: 5);//THIS IS NEED OF HEAVY TWEEKING / TESTING
+                                                                              directionNeuronInboundDendriteThresholdReductionMultiplier: 50);//THIS IS NEED OF HEAVY TWEEKING / TESTING
 
             GlobalLayersKnowledge.ReceptorField = new ReceptorField(fieldWidth: receptorFieldWidth,
                                                                     fieldHeight: receptorFieldHeight,
@@ -120,6 +120,7 @@ namespace EyeBotReboot
                 GlobalLayersKnowledge.LaplaceFilterField.NewTurn();
                 GlobalLayersKnowledge.MacroSectorField.NewTurn();
                 GlobalLayersKnowledge.MicroSectorField.NewTurn();
+                GlobalLayersKnowledge.DirectionSuperField.NewTurn();
                 var currentPath = System.IO.Directory.GetCurrentDirectory();
                 //if (i % 5 == 0)
                 //{

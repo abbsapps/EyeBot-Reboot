@@ -10,6 +10,7 @@ namespace EyeBotReboot.Components.Dendrites
     {
         public PairedDendrite(INeuron targetNeuron, INeuron returnNeuron, InitiationAxonTwoWay returnAxon, double selfThreshReductionMultiplier, double pairedAxonThresholdBase, double pairedAxonThresholdSpike, double pairedAxonThresholdDecayPercent, double pairedAxonThresholdDecayConstant, double pairedAxonSignalStrength, double returnDendriteThreshReductionMultiplier)
         {
+            //MAJOR PROBLEM HERE: THE NEWLY-CREATED PAIREDAXON NEEDS TO BE ADDED TO THE TARGET NEURON'S 'LIST<AXON> AXONS' PROPERTY.  HOWEVER BECAUSE PAIREDDENDRITE IS ONLY FED AN INEURON, WHICH HAS NO AXONS PROPERTY, THIS IS MUCH COMPLICATED.  NEED TO FIGURE OUT
             DendriteType = "paired";
             Neuron = targetNeuron;
             AxonThreshReductionMultiplier = selfThreshReductionMultiplier;
@@ -18,6 +19,7 @@ namespace EyeBotReboot.Components.Dendrites
                                         thresholdDecayPercent: pairedAxonThresholdDecayPercent,
                                         thresholdDecayConstant: pairedAxonThresholdDecayConstant, signalStrength: pairedAxonSignalStrength,
                                         returnNeuron: returnNeuron, returnAxon: returnAxon);
+            //Neuron.Axons.
         }
 
         public string DendriteType { get; set; }

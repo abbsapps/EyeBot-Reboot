@@ -25,6 +25,8 @@ namespace EyeBotReboot.Sections
             WidthPercent = fieldWidthPercent;
             HeightPercent = fieldHeightPercent;
 
+            DirectionRepresentative = new DirectionRepresentative(direction);
+
             TemporaryFieldByLocation = new List<List<Direction>>();
             Field = new List<Direction>();
 
@@ -36,12 +38,7 @@ namespace EyeBotReboot.Sections
                 {
                     
                     Direction newDirectionNeuron = new Direction(direction: direction,
-                                                                 otherDirectionThreshReductionMultiplier: otherDirectionThreshReductionMultiplier,
-                                                                 otherDirectionThresholdBase: otherDirectionThresholdBase,
-                                                                 otherDirectionThresholdSpike: otherDirectionThresholdSpike,
-                                                                 otherDirectionThresholdDecayPercent: otherDirectionThresholdDecayPercent,
-                                                                 otherDirectionThresholdDecayConstant: otherDirectionThresholdDecayConstant,
-                                                                 otherDirectionSignalStrength: otherDirectionSignalStrength,
+                                                                 directionRepresentativeNeuron: DirectionRepresentative,
                                                                  representativeThresholdBase: representativeThresholdBase,
                                                                  representativeDirectionThresholdSpike: representativeDirectionThresholdSpike,
                                                                  representativeDirectionThresholdDecayPercent: representativeDirectionThresholdDecayPercent,
@@ -209,6 +206,7 @@ namespace EyeBotReboot.Sections
             {
                 directionNeuron.NewTurn();
             }
+            DirectionRepresentative.NewTurn();
         }
     }
 }

@@ -61,19 +61,19 @@ namespace EyeBotReboot.Components.Neurons
                     var xIndex = xLocation + (int)comparitiveXLocation;
                     var yIndex = yLocation + (int)comparitiveYLocation;
                     var targetNeuronLocation = directionField.TemporaryFieldByLocation[xIndex][yIndex];
-                    //Axons.Add(new InitiationAxonTwoWay(outboundThresholdBase: directionNeuronOutboundThresholdBase, outboundThresholdSpike: directionNeuronOutboundThresholdSpike,
-                    //                                   outboundThresholdDecayPercent: directionNeuronOutboundThresholdDecayPercent,
-                    //                                   outboundThresholdDecayConstant: directionNeuronOutboundThresholdDecayConstant,
-                    //                                   outboundSignalStrength: directionNeuronOutboundSignalStrength, outboundDendriteType: "paired",
-                    //                                   outboundDendriteThreshReductionMultiplier: directionNeuronOutboundDendriteThresholdReductionMultiplier, 
-                    //                                   inboundThresholdBase: directionNeuronInboundThresholdBase,
-                    //                                   inboundThresholdSpike: directionNeuronInboundThresholdSpike,
-                    //                                   inboundThresholdDecayPercent: directionNeuronInboundThresholdDecayPercent,
-                    //                                   inboundThresholdDecayConstant: directionNeuronInboundThresholdDecayConstant,
-                    //                                   inboundSignalStrength: directionNeuronInboundSignalStrength,
-                    //                                   inboundDendriteType: "paired",
-                    //                                   inboundDendriteThreshReductionMultiplier: directionNeuronInboundDendriteThresholdReductionMultiplier,
-                    //                                   targetNeuron: targetNeuronLocation, returnNeuron: this));
+                    Axons.Add(new InitiationAxonTwoWay(outboundThresholdBase: directionNeuronOutboundThresholdBase, outboundThresholdSpike: directionNeuronOutboundThresholdSpike,
+                                                       outboundThresholdDecayPercent: directionNeuronOutboundThresholdDecayPercent,
+                                                       outboundThresholdDecayConstant: directionNeuronOutboundThresholdDecayConstant,
+                                                       outboundSignalStrength: directionNeuronOutboundSignalStrength, outboundDendriteType: "paired",
+                                                       outboundDendriteThreshReductionMultiplier: directionNeuronOutboundDendriteThresholdReductionMultiplier, 
+                                                       inboundThresholdBase: directionNeuronInboundThresholdBase,
+                                                       inboundThresholdSpike: directionNeuronInboundThresholdSpike,
+                                                       inboundThresholdDecayPercent: directionNeuronInboundThresholdDecayPercent,
+                                                       inboundThresholdDecayConstant: directionNeuronInboundThresholdDecayConstant,
+                                                       inboundSignalStrength: directionNeuronInboundSignalStrength,
+                                                       inboundDendriteType: "paired",
+                                                       inboundDendriteThreshReductionMultiplier: directionNeuronInboundDendriteThresholdReductionMultiplier,
+                                                       targetNeuron: targetNeuronLocation, returnNeuron: this));
                 }
             }
 
@@ -115,7 +115,7 @@ namespace EyeBotReboot.Components.Neurons
             {
                 GlobalLayersKnowledge.Perception.SetPixel(XLocation + (int)(.5 * GlobalLayersKnowledge.Perception.Width), YLocation + (int)(.5 * GlobalLayersKnowledge.Perception.Height), Color.White);
             }
-
+            //NOT SURE WHAT IS WRONG WITH BELOW COMMENTED OUT STUFF BUT IT BREAKS A BUNCH OF STUFF.
             //bool keepLooping = true;
             //while (keepLooping)
             //{
